@@ -31,7 +31,7 @@ Para obtener instrucciones detalladas sobre cómo configurar y ejecutar la aplic
 - Juan David Loaiza Santiago (JuanLoaiza007)
 - Juan Sebastian Muñoz Rojas (sebastianmr18)
 - Julian David Rendon Cardona (JulianRC1)
-- Yissy Katherine Posso Perea (...)
+- Yissy Katherine Posso Perea (YissyPosso)
 
 ## Licencia
 

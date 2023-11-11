@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'rest_framework'
+    'rest_framework',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -77,12 +78,15 @@ WSGI_APPLICATION = 'concesionario_webapp.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+	'default': {
+    	'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    	'NAME': 'concesionario',
+    	'USER': 'postgres',
+    	'PASSWORD': 'postgres',
+    	'HOST': 'localhost',
+    	'PORT': '5432',
+	}
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

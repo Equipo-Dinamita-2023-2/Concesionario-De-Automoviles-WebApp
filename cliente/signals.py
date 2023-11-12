@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.apps import apps
 from django.db import IntegrityError
 from core.models import Cliente as core_cliente
+from core.signals import flag_crear_inserciones as pred_inserts_allowed
 
 # Variable global para rastrear si el código ya se ejecutó
 post_migrate_executed = False
@@ -12,7 +13,7 @@ post_migrate_executed = False
 def insert_data(sender, **kwargs):
     global post_migrate_executed
 
-    if not post_migrate_executed:
+    if pred_inserts_allowed and not post_migrate_executed:
 
         try:
             Cliente = apps.get_model('core', 'Cliente')

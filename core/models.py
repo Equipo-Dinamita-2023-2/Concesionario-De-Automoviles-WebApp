@@ -11,6 +11,10 @@ class Sucursal(models.Model):
     fijo = models.CharField(max_length=10)
     correo = models.CharField(max_length=30)
 
+    # Mostrar en Django Admin
+    def __str__(self):
+        return self.direccion
+
 
 class Cliente(models.Model):
     id_cliente = models.AutoField(primary_key=True)
@@ -22,10 +26,17 @@ class Cliente(models.Model):
     direccion = models.CharField(max_length=30)
     ciudad = models.CharField(max_length=15)
 
+    def __str__(self):
+        return f"{self.nombres} {self.apellidos}"
+
 
 class RolEmpleado(models.Model):
     id_rol = models.AutoField(primary_key=True)
     tipo_rol = models.CharField(max_length=10)
+
+    # Mostrar en Django Admin
+    def __str__(self):
+        return self.tipo_rol
 
 
 class Empleado(models.Model):
@@ -40,6 +51,9 @@ class Empleado(models.Model):
     ciudad = models.CharField(max_length=15)
     id_rol = models.ForeignKey(RolEmpleado, on_delete=models.CASCADE)
     id_sucursal = models.ForeignKey(Sucursal, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.nombres} {self.apellidos}"
 
 
 class TipoVehiculo(models.Model):

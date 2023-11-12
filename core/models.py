@@ -65,6 +65,10 @@ class TipoVehiculo(models.Model):
     stock = models.IntegerField()
     precio = models.IntegerField()
 
+    # Mostrar en Django Admin
+    def __str__(self):
+        return f"{self.marca} {self.modelo}"
+
 
 class Vehiculo(models.Model):
     placa = models.CharField(max_length=6, primary_key=True)
@@ -72,6 +76,10 @@ class Vehiculo(models.Model):
         TipoVehiculo, on_delete=models.CASCADE)
     disponibilidad_color = models.BooleanField()
     disponibilidad_precio = models.BooleanField()
+
+    # Mostrar en Django Admin
+    def __str__(self):
+        return f"{self.placa} - {self.id_tipo_vehiculo}"
 
 
 class Repuesto(models.Model):
@@ -81,6 +89,10 @@ class Repuesto(models.Model):
     stock = models.IntegerField()
     precio = models.IntegerField()
     descripcion = models.CharField(max_length=50)
+
+    # Mostrar en Django Admin
+    def __str__(self):
+        return f"{self.id_repuesto} {self.id_tipo_vehiculo}"
 
 
 class Cotizacion(models.Model):
@@ -93,6 +105,10 @@ class Cotizacion(models.Model):
         TipoVehiculo, on_delete=models.CASCADE)
     descripcion_cotizacion = models.CharField(max_length=50)
 
+    # Mostrar en Django Admin
+    def __str__(self):
+        return f"{self.id_cotizacion} {self.id_cliente} {self.placa}"
+
 
 class Venta(models.Model):
     id_venta = models.AutoField(primary_key=True)
@@ -102,6 +118,10 @@ class Venta(models.Model):
     id_tipo_vehiculo = models.ForeignKey(
         TipoVehiculo, on_delete=models.CASCADE)
     descripcion_venta = models.CharField(max_length=50)
+
+    # Mostrar en Django Admin
+    def __str__(self):
+        return f"{self.id_venta} {self.id_empleado} {self.placa}"
 
 
 class OrdenReparacion(models.Model):
@@ -116,3 +136,7 @@ class OrdenReparacion(models.Model):
     estado_vehiculo = models.CharField(max_length=50)
     descripcion_trabajo = models.CharField(max_length=100)
     estado_reparacion = models.BooleanField()
+
+    # Mostrar en Django Admin
+    def __str__(self):
+        return f"{self.id_reparacion} {self.id_empleado} {self.id_cliente} {self.placa}"

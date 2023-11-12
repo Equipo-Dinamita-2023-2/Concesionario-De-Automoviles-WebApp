@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'core',
-    'roles',
+    'cliente',
+    'rol_empleado',
+    'empleado',
 ]
 
 MIDDLEWARE = [

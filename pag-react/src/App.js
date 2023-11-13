@@ -12,7 +12,7 @@ import Terminos from './paginas/terminos';
 import Privacidad from './paginas/privacidad';
 import Error from './paginas/error';
 import Login from './paginas/login';
-import Roles from './paginas/roles';
+import Formulario from './paginas/roles';
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
         <Route path='/preguntas' element={<Preguntas/>}></Route>
         <Route path='/promociones' element={<Promociones/>}></Route>
         <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
-        <Route path='roles' element={<Roles/>}></Route>  
+        <Route path='/roles' element={<Formulario/>}></Route>  
         <Route path='/privacidad' element={<Privacidad/>}></Route>
       </Routes>
     </Router>

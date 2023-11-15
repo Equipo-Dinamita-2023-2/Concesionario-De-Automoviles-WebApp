@@ -1,152 +1,77 @@
-// Archivo: NuevoFormulario.js
+import React, { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Modal, ModalBody, ModalHeader,ModalFooter} from 'reactstrap';
 
-import React, { useState, useEffect } from 'react';
-import '../styles/formulario.css';  // Cambia el nombre del archivo CSS aquí
+function Formulario() {
 
-const initialState = {
-  documento: '',
-  nombres: '',
-  apellidos: '',
-  celular: '',
-  correo: '',
-  contraseña: '',
-  dirección: '',
-  ciudad: '',
-  ocupacion: ''
-};
+    const new_formulario=[
 
-const NuevoFormulario = () => {
-  const [formData, setFormData] = useState(initialState);
-  const [errors, setErrors] = useState({});
-  const [fieldErrors, setFieldErrors] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false);
+    {documento: 1, nombre: "Estiven ", apellidos: "Martinez", celular: 3146105201, correo: "estivenfrv@gmai.com",
+    contrasena: "admin", direccion: "Cra 24", ciudad: "Cali", rol: ""},
+    
+    {documento: 2, nombre: "Pepe", apellidos: "Gonzalo", celular: 31415514201, correo: "lilan@gmai.com",
+    contrasena: "admin", direccion: "Cra 54", ciudad: "Bogotá", rol: ""},
+    
+];
 
-  useEffect(() => {
-    setFieldErrors(errors);
-  }, [errors]);
+    const [data, setData]=useState(new_formulario);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: validateField(name, value) }));
-  };
+    return (
+        <div>
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length === 0) {
-      setFormData(initialState);
-      setErrors({});
-    } else {
-      setErrors(validationErrors);
-    }
-  };
+            <h2>Editar</h2>
+            <br/>
 
-  const validateField = (fieldName, value) => {
-    let fieldError = '';
+        <table className="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Celular</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>Dirección</th>
+                    <th>Ciudad</th>
+                    <th>Rol</th>
+                </tr>
+            </thead>
 
-    if (fieldName === 'documento' || fieldName === 'celular') {
-      if (!/^\d+$/.test(value)) {
-        fieldError = `El campo ${fieldName} solo debe contener números.`;
-      }
-    }
+            <tbody>
+                {data.map(elemento=>(
 
-    if (fieldName === 'correo') {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        fieldError = 'El formato del correo electrónico es inválido.';
-      }
-    }
+                    <tr>
+                        <td>{elemento.documento}</td>
+                        <td>{elemento.nombre}</td>
+                        <td>{elemento.apellidos}</td>
+                        <td>{elemento.celular}</td>
+                        <td>{elemento.correo}</td>
+                        <td>{elemento.contrasena}</td>
+                        <td>{elemento.direccion}</td>
+                        <td>{elemento.ciudad}</td>
+                        <td>{elemento.rol}</td>
+                        <td><button className="btn btn-primary">Editar</button>{" "}</td>
+                        <td><button className="btn btn-danger">Eliminar</button>{" "}</td>
+                    </tr>
 
-    return fieldError;
-  };
+                ))
+                }
+            </tbody>
 
-  const validateForm = () => {
-    const errors = {};
+        </table>
 
-    if (!/^\d+$/.test(formData.documento)) {
-      errors.documento = 'El campo documento solo debe contener números.';
-    }
-
-    if (!/^\d+$/.test(formData.celular)) {
-      errors.celular = 'El campo celular solo debe contener números.';
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.correo)) {
-      errors.correo = 'El formato del correo electrónico es inválido.';
-    }
-
-    return errors;
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  return (
-    <section className="seccion-rol">
-    <div className="nuevo-contenedor">
-      <form className="nuevo-formulario" onSubmit={handleSubmit}>
-        {Object.keys(initialState).map((fieldName) => (
-          <div className="nuevo-campo" key={fieldName}>
-            <label className="nueva-etiqueta" htmlFor={fieldName}>
-              {fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}:
-            </label>
-            <input
-              className={`nuevo-input ${fieldName !== 'contraseña' ? 'nuevo-input' : ''}`}
-              type={fieldName === 'contraseña' ? 'password' : 'text'}
-              id={fieldName}
-              name={fieldName}
-              value={formData[fieldName]}
-              onChange={handleChange}
-            />
-            {fieldErrors[fieldName] && isModalOpen && (
-              <div className="nueva-ventana-emergente animacion" onClick={closeModal}>
-                {fieldErrors[fieldName]}
-              </div>
-            )}
-          </div>
-        ))}
-
-        {isModalOpen && (
-          <div className="nuevo-modal" onClick={closeModal}>
-            <div className="nueva-ventana-emergente animacion">
-              {Object.keys(fieldErrors).map((fieldName) => (
-                fieldErrors[fieldName] && (
-                  <div key={fieldName}>
-                    {fieldErrors[fieldName]}
-                  </div>
-                )
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className="nuevo-campo">
-          <label className="nueva-etiqueta" htmlFor="ocupacion">
-            Ocupación:
-          </label>
-          <select
-            className="nuevo-select"
-            id="ocupacion"
-            name="ocupacion"
-            value={formData.ocupacion}
-            onChange={handleChange}
-          >
-            <option value="">Selecciona una opción</option>
-            <option value="vendedor">Vendedor</option>
-            <option value="programador">Programador</option>
-            {/* Agrega más opciones según sea necesario */}
-          </select>
+        <Modal>
+            <ModalHeader>
+                <div>
+                    <h3>Editar trabajador</h3>
+                </div>
+            </ModalHeader>
+            <ModalBody>
+                
+            </ModalBody>
+        </Modal>
         </div>
+    )
+}
 
-        <button className="nuevo-boton" type="submit">
-          Enviar
-        </button>
-      </form>
-    </div>
-    </section>
-  );
-
-};
-
-export default NuevoFormulario;
+export default Formulario

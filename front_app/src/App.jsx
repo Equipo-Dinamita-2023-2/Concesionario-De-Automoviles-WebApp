@@ -15,6 +15,7 @@ import Login from './pages/login';
 import Formulario from './pages/roles';
 
 
+
 function App() {
   return (
     <Router>
@@ -30,7 +31,7 @@ function App() {
         <Route path='/preguntas' element={<Preguntas/>}></Route>
         <Route path='/promociones' element={<Promociones/>}></Route>
         <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
-        <Route path='/roles' element={<Formulario/>}></Route>  
+        <Route path='/roles' element={<Formulario></Formulario>}></Route> 
         <Route path='/privacidad' element={<Privacidad/>}></Route>
       </Routes>
     </Router>

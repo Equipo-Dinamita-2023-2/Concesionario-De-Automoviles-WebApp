@@ -32,10 +32,6 @@ body {
   backdrop-filter: blur(15px);
 }
 
-.nuevo-formulario:hover {
-  transform: scale(1.05);
-}
-
 .nuevo-campo {
   margin-bottom: 10px;
   display: flex;
@@ -122,4 +118,35 @@ body {
 
 .nuevo-campo-doble .nuevo-input {
   width: calc(50% - 5px);
+}
+
+/* Estilos adicionales para el formulario original */
+
+.lista-formularios {
+  width: 300px;
+}
+
+.formulario-guardado {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.botones-acciones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.editar-boton,
+.eliminar-boton {
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.eliminar-boton {
+  background-color: #f44336;
 }

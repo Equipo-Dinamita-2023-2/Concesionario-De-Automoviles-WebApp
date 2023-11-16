@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'orden_de_reparacion',
     'vendedor',
     'tallerista',
+    'venta',
 ]
 
 MIDDLEWARE = [

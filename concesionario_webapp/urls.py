@@ -21,6 +21,7 @@ from cotizacion import urls as cotizacion_urls
 from orden_de_reparacion import urls as or_urls
 from tallerista import urls as tallerista_urls
 from vendedor import urls as vendedor_urls
+from venta import urls as venta_urls
 
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
     path('orden_de_reparacion/', include(or_urls)),
     path('tallerista/', include(tallerista_urls)),
     path('vendedor/', include(vendedor_urls)),
+    path('venta/', include(venta_urls)),
 ]

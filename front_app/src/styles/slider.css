@@ -1,0 +1,34 @@
+/*Slider*/
+.slider-contenedor {
+    width: 100%;
+    height: 430px; /* Ajusta la altura deseada */
+    overflow: hidden; /* Para ocultar el desbordamiento vertical */
+    position:sticky;
+}
+
+.position {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Ajusta la transformación para centrar el contenido verticalmente y horizontalmente */
+}
+
+.slider {
+    background-image: url(../images/carroazul.jpg);
+    background-size:cover;
+    width: 100%;
+    height: 100%; /* Para que ocupe toda la altura del contenedor */
+    animation: animate 10s ease 0s infinite alternate-reverse none;
+}
+
+@keyframes animate {
+    0% {
+        background-image: url(../images/carroazul.jpg);
+    }
+    50% {
+        background-image: url(../images/reparacion-auto.jpg);
+    }
+    100% {
+        background-image: url(../images/carro-fondo.jpg);
+    }
+}

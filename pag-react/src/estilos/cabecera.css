@@ -1,0 +1,134 @@
+.cabecera{
+    background-color: black;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px;
+    transition: all .50s ease;
+    padding: 20px;
+}
+
+
+
+#imagen{
+    width: 130px;
+}
+
+.logoCabecera{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.navbar{
+    display: flex;
+}
+
+.navbar a{
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 5px 0;
+    margin: 0px 20px;
+    transition: all .50s ease;
+}
+
+.navbar a:hover{
+    color:red;
+    text-decoration: none;
+}
+
+.main{
+    display: flex;
+    align-items: center;
+}
+
+.main a{
+    margin-right: 25px;
+    margin-left: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all .50s ease;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+}
+
+.user, .ri-user-fill{
+    font-size: 20px;
+    margin-right: 7px;
+
+}
+
+.main a:hover{
+    color: red;
+    text-decoration: none;
+}
+
+#menu-icon{
+    color: aliceblue;
+    font-size: 35px;
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+}
+
+@media(max-width: 1280px){
+    .cabecera{
+        padding: 14px 2%;
+        transition: .2s;
+    }
+    .navbar a{
+        padding: 5px 0;
+        margin: 0px 20px;
+    }
+}
+
+@media(max-width: 1090px){
+    #menu-icon{
+        display: block;
+    }
+    .navbar{
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        width: 270px;
+        height: 38vh;
+        background: red;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: 10px;
+        transition: all .50s ease;
+    }
+
+    .navbar a{
+        display: block;
+        margin: 12px;
+        padding: 0px 25px;
+        transition: all .50s ease;
+    }
+
+    .navbar a:hover{
+        color:black;
+        transform: translate(10px);
+    }
+
+    .navbar a.active{
+        color: black;
+    }
+
+    .navbar.open{
+        right: 2%;
+    }
+}
+
+footer a:hover {
+    text-decoration: none;
+}

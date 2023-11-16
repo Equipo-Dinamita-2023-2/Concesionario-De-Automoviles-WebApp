@@ -48,6 +48,19 @@ function InformacionCliente(){
     )
 }
 
+function InformacionVendedor(){
+    return(
+        <>
+        <h2 className="subtitulos">Información del vendedor</h2>
+        <form className="formulario-reparar">
+            <label htmlFor="id-vendedor" className="label-reparar">Identificación:</label>
+            <input type="text" id="id-vendedor" name="id-vendedor" className="input-reparar"required/>
+
+        </form>
+        </>
+    );
+}
+
 function InformacionVehiculo(){
     return(
     <>
@@ -81,12 +94,9 @@ function DetallesProblema(){
     <label htmlFor="fechaIngreso" className="label-reparar">Fecha de Ingreso:</label>
     <input type="date" id="fechaIngreso" name="fechaIngreso" className="input-reparar" required/>
 
-    <label htmlFor="tipoServicio" className="label-reparar">Tipo de Servicio Requerido:</label>
-        <select id="tipoServicio" name="tipoServicio"  className="input-reparar" required>
-            <option value="reparacion">Reparación</option>
-            <option value="mantenimiento">Mantenimiento</option>
-            <option value="revision">Revisión</option>
-        </select>
+    <label htmlFor="estadoReparacion" className="label-reparar">Estado de reparación:</label>
+    <input type="text" id="estadoReparacion" name="estadoReparacion" className="input-reparar" required/>
+
     
     <label htmlFor="descripcionProblema" className="label-reparar">Descripción del Problema:</label>
     <textarea id="descripcionProblema" name="descripcionProblema" rows="4" className="input-reparar" required></textarea>
@@ -106,6 +116,8 @@ function DetallesProblema(){
     </>
     )
 }
+
+
 function Reparar(){
     return(
         <>
@@ -113,6 +125,7 @@ function Reparar(){
             <ContenedorImagen imagen={publicidad}/>
             <h1 className="titulos">Reparar</h1>
             <InformacionCliente/>
+            <InformacionVendedor/>
             <InformacionVehiculo/>
             <DetallesProblema/>
             <Footer/>

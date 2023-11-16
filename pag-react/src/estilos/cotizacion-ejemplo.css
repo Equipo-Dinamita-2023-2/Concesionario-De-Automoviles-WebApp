@@ -1,0 +1,19 @@
+.container-ejemplo {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+.container-ejemplo #resultados.hidden {
+    display: block; /* Cambia a 'block' cuando 'hidden' está presente */
+}

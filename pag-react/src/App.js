@@ -2,7 +2,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Inicio from './paginas/inicio';
 import Productos from './paginas/productos';
 import Reparar from './paginas/reparar';
-import Cotizar from './paginas/cotizar';
+import Cotizacion from './paginas/cotizacion2';
 import './estilos/general.css'
 import PagoEnvio from './paginas/pagos-envios';
 import Devoluciones from './paginas/devoluciones';
@@ -21,7 +21,7 @@ function App() {
         <Route path='/inicio' element={<Inicio/>}></Route>
         <Route path='/productos' element={<Productos/>}></Route>
         <Route path='/reparar' element={<Reparar/>}></Route>
-        <Route path='/cotizar' element={<Cotizar/>}></Route>
+        <Route path='/cotizar' element={<Cotizacion/>}></Route>
         <Route path='/pagos-envios' element={<PagoEnvio/>}></Route>
         <Route path='/devoluciones' element={<Devoluciones/>}></Route>
         <Route path='/preguntas' element={<Preguntas/>}></Route>

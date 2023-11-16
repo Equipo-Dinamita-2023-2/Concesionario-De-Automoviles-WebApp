@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'core',
     'cliente',
     'vendedor',
+    'tallerista',
 ]
 
 MIDDLEWARE = [

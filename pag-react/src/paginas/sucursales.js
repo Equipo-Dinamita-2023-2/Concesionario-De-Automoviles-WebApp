@@ -43,23 +43,20 @@ function Sucursales() {
         var dataNueva=data;
         dataNueva.map(sucursal=>{
           if(sucursal.id_sucursal===sucursalSeleccionado.id_sucursal){
-            sucursal.documento=sucursalSeleccionado.documento;
-            sucursal.nombre=sucursalSeleccionado.nombre;
-            sucursal.apellidos=sucursalSeleccionado.apellidos;
-            sucursal.celular=sucursalSeleccionado.celular;
-            sucursal.correo=sucursalSeleccionado.correo;
-            sucursal.contrasenha=sucursalSeleccionado.contrasenha;
-            sucursal.direccion=sucursalSeleccionado.direccion;
             sucursal.ciudad=sucursalSeleccionado.ciudad;
-            sucursal.nombre=sucursalSeleccionado.nombre;
+            sucursal.direccion=sucursalSeleccionado.direccion;
+            sucursal.celular=sucursalSeleccionado.celular;
+            sucursal.fijo=sucursalSeleccionado.fijo;
+            sucursal.correo=sucursalSeleccionado.correo;
           }
         });
+
         setData(dataNueva);
         setModalEditar(false);
       }
     
       const eliminar =()=>{
-        setData(data.filter(sucursal=>sucursal.id_empleado!==sucursalSeleccionado.id_empleado));
+        setData(data.filter(sucursal=>sucursal.id_sucursal!==sucursalSeleccionado.id_sucursal));
         setModalEliminar(false);
       }
     
@@ -70,7 +67,7 @@ function Sucursales() {
     
       const insertar =()=>{
         var valorInsertar=sucursalSeleccionado;
-        valorInsertar.id_empleado=data[data.length-1].id_empleado+1;
+        valorInsertar.id_sucursal=data[data.length-1].id_sucursal+1;
         var dataNueva = data;
         dataNueva.push(valorInsertar);
         setData(dataNueva);
@@ -79,7 +76,7 @@ function Sucursales() {
     
       return (
         <div className="App">
-          <h2>|CRUD| empleados</h2>
+          <h2>|CRUD| Sucursales</h2>
           <br />
         <button className="btn btn-success" onClick={()=>abrirModalInsertar()}>Insertar</button>
         <br /><br />
@@ -87,33 +84,25 @@ function Sucursales() {
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Documento</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Celular</th>
-                <th>Correo</th>
-                <th>Contraseña</th>
-                <th>Dirección</th>
                 <th>Ciudad</th>
-                <th>Rol</th>
+                <th>Dirección</th>
+                <th>Celular</th>
+                <th>Fijo</th>
+                <th>Correo</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {data.map(sucursal=>(
                 <tr>
-                  <td>{sucursal.id_empleado}</td>
-                  <td>{sucursal.documento}</td>
-                  <td>{sucursal.nombre}</td>
-                  <td>{sucursal.apellidos}</td>
-                  <td>{sucursal.celular}</td>
-                  <td>{sucursal.correo}</td>
-                  <td>{sucursal.contrasenha}</td>
-                  <td>{sucursal.direccion}</td>
+                  <td>{sucursal.id_sucursal}</td>
                   <td>{sucursal.ciudad}</td>
-                  <td>{sucursal.rol}</td>
-                  <td><button className="btn btn-primary" onClick={()=>seleccionarSucursal(empleado, 'Editar')}>Editar</button> {"   "} 
-                  <button className="btn btn-danger" onClick={()=>seleccionarSucursal(empleado, 'Eliminar')}>Eliminar</button></td>
+                  <td>{sucursal.direccion}</td>
+                  <td>{sucursal.celular}</td>
+                  <td>{sucursal.fijo}</td>
+                  <td>{sucursal.correo}</td> 
+                  <td><button className="btn btn-primary" onClick={()=>seleccionarSucursal(sucursal, 'Editar')}>Editar</button> {"   "} 
+                  <button className="btn btn-danger" onClick={()=>seleccionarSucursal(sucursal, 'Eliminar')}>Eliminar</button></td>
                 </tr>
               ))
               }
@@ -133,37 +122,27 @@ function Sucursales() {
                   className="form-control"
                   readOnly
                   type='number'
-                  name="id_empleado"
-                  value={sucursalSeleccionado && sucursalSeleccionado.id_empleado}
+                  name="id_sucursal"
+                  value={sucursalSeleccionado && sucursalSeleccionado.id_sucursal}
                 />
                 <br />
     
-                <label>Documento</label>
+                <label>Ciudad</label>
                 <input
                   className="form-control"
-                  type='number'
-                  name="documento"
-                  value={sucursalSeleccionado && sucursalSeleccionado.documento}
+                  type='text'
+                  name="ciudad"
+                  value={sucursalSeleccionado && sucursalSeleccionado.ciudad}
                   onChange={handleChange}
                 />
                 <br />
     
-                <label>Nombre</label>
+                <label>Dirección</label>
                 <input
                   className="form-control"
                   type="text"
-                  name="nombre"
-                  value={sucursalSeleccionado && sucursalSeleccionado.nombre}
-                  onChange={handleChange}
-                />
-                <br />
-
-                <label>Apellidos</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="apellidos"
-                  value={sucursalSeleccionado && sucursalSeleccionado.apellidos}
+                  name="direccion"
+                  value={sucursalSeleccionado && sucursalSeleccionado.direccion}
                   onChange={handleChange}
                 />
                 <br />
@@ -178,6 +157,16 @@ function Sucursales() {
                 />
                 <br />
 
+                <label>Fijo</label> 
+                <input
+                  className="form-control"
+                  type='number'
+                  name="fijo"
+                  value={sucursalSeleccionado && sucursalSeleccionado.fijo}
+                  onChange={handleChange}
+                />
+                <br />
+
                 <label>Correo</label>
                 <input
                   className="form-control"
@@ -187,49 +176,6 @@ function Sucursales() {
                   onChange={handleChange}
                 />
                 <br />
-
-
-                <label>Contraseña</label>
-                <input
-                  className="form-control"
-                  type='password'
-                  name="contrasenha"
-                  value={sucursalSeleccionado && sucursalSeleccionado.contrasenha}
-                  onChange={handleChange}
-                />
-                <br />
-
-                <label>Dirección</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="direccion"
-                  value={sucursalSeleccionado && sucursalSeleccionado.direccion}
-                  onChange={handleChange}
-                />
-                <br />
-
-                
-                <label>Ciudad</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="ciudad"
-                  value={sucursalSeleccionado && sucursalSeleccionado.ciudad}
-                  onChange={handleChange}
-                />
-                <br />
-
-                <label>Rol</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="rol"
-                  value={sucursalSeleccionado && sucursalSeleccionado.rol}
-                  onChange={handleChange}
-                />
-                <br />
-
               </div>
 
 
@@ -250,7 +196,7 @@ function Sucursales() {
     
           <Modal isOpen={modalEliminar}>
             <ModalBody>
-              Estás Seguro que deseas eliminar el empleado {sucursalSeleccionado && sucursalSeleccionado.nombre}
+              Estás Seguro que deseas eliminar la sucursal {sucursalSeleccionado && sucursalSeleccionado.sucursal}
             </ModalBody>
             <ModalFooter>
               <button className="btn btn-danger" onClick={()=>eliminar()}>
@@ -269,7 +215,7 @@ function Sucursales() {
             <Modal isOpen={modalInsertar}>
             <ModalHeader>
               <div>
-                <h3>Insertar empleado</h3>
+                <h3>Insertar sucursales</h3>
               </div>
             </ModalHeader>
             <ModalBody>
@@ -278,74 +224,23 @@ function Sucursales() {
                 <input
                   className="form-control"
                   readOnly
-                  type={Number}
-                  name="id_empleado"
-                  value={data[data.length-1].id_empleado+1}
+                  type='number'
+                  name="id_sucursal"
+                  value={data[data.length-1].id_sucursal+1}
                 />
                 <br />
     
-                <label>Documento</label>
+                <label>Ciudad</label>
                 <input
                   className="form-control"
-                  type={Number}
-                  name="documento"
-                  value={sucursalSeleccionado ? sucursalSeleccionado.documento: ''}
+                  type='text'
+                  name="ciudad"
+                  value={sucursalSeleccionado ? sucursalSeleccionado.ciudad: ''}
                   onChange={handleChange}
                 />
                 <br />
     
-                <label>Nombre</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="nombre"
-                  value={sucursalSeleccionado ? sucursalSeleccionado.nombre: ''}
-                  onChange={handleChange}
-                />
-                <br />
-
-                <label>Apellidos</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="apellidos"
-                  value={sucursalSeleccionado ? sucursalSeleccionado.apellidos: ''}
-                  onChange={handleChange}
-                />
-                <br />
-
-                <label>Celular</label>
-                <input
-                  className="form-control"
-                  type={Number}
-                  name="celular"
-                  value={sucursalSeleccionado ? sucursalSeleccionado.celular: ''}
-                  onChange={handleChange}
-                />
-                <br />
-
-
-                <label>Correo</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="correo"
-                  value={sucursalSeleccionado ? sucursalSeleccionado.correo: ''}
-                  onChange={handleChange}
-                />
-                <br />
-
-                <label>Contraseña</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="contrasenha"
-                  value={sucursalSeleccionado ? sucursalSeleccionado.contrasenha: ''}
-                  onChange={handleChange}
-                />
-                <br />
-
-                <label>Dirección</label>
+                <label>Direccion</label>
                 <input
                   className="form-control"
                   type="text"
@@ -355,28 +250,38 @@ function Sucursales() {
                 />
                 <br />
 
-                <label>Ciudad</label>
+                <label>Celular</label>
                 <input
                   className="form-control"
-                  type="text"
-                  name="ciudad"
-                  value={sucursalSeleccionado ? sucursalSeleccionado.ciudad: ''}
+                  type='number'
+                  name="celular"
+                  value={sucursalSeleccionado ? sucursalSeleccionado.celular: ''}
                   onChange={handleChange}
                 />
                 <br />
 
-                <label>Rol</label>
+                <label>Fijo</label>
                 <input
                   className="form-control"
-                  type="text"
-                  name="rol"
-                  value={sucursalSeleccionado ? sucursalSeleccionado.rol: ''}
+                  type='number'
+                  name="fijo"
+                  value={sucursalSeleccionado ? sucursalSeleccionado.fijo: ''}
                   onChange={handleChange}
                 />
                 <br />
 
 
+                <label>Correo</label>
+                <input
+                  className="form-control"
+                  type='email'
+                  name="correo"
+                  value={sucursalSeleccionado ? sucursalSeleccionado.correo: ''}
+                  onChange={handleChange}
+                />
+                <br />
               </div>
+
             </ModalBody>
             <ModalFooter>
               <button className="btn btn-primary"

@@ -76,6 +76,7 @@ class Vehiculo(models.Model):
         TipoVehiculo, on_delete=models.CASCADE)
     disponibilidad_color = models.BooleanField()
     disponibilidad_precio = models.BooleanField()
+    url = models.CharField(max_length=500)
 
     # Mostrar en Django Admin
     def __str__(self):

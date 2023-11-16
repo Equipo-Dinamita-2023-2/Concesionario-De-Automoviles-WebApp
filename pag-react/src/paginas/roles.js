@@ -141,7 +141,7 @@ function Roles() {
                 <input
                   className="form-control"
                   readOnly
-                  type={Number}
+                  type='number'
                   name="id_empleado"
                   value={empleadoSeleccionado && empleadoSeleccionado.id_empleado}
                 />
@@ -150,7 +150,7 @@ function Roles() {
                 <label>Documento</label>
                 <input
                   className="form-control"
-                  type={Number}
+                  type='number'
                   name="documento"
                   value={empleadoSeleccionado && empleadoSeleccionado.documento}
                   onChange={handleChange}
@@ -180,7 +180,7 @@ function Roles() {
                 <label>Celular</label>
                 <input
                   className="form-control"
-                  type={Number}
+                  type='number'
                   name="celular"
                   value={empleadoSeleccionado && empleadoSeleccionado.celular}
                   onChange={handleChange}
@@ -190,7 +190,7 @@ function Roles() {
                 <label>Correo</label>
                 <input
                   className="form-control"
-                  type="text"
+                  type='email'
                   name="correo"
                   value={empleadoSeleccionado && empleadoSeleccionado.correo}
                   onChange={handleChange}
@@ -201,7 +201,7 @@ function Roles() {
                 <label>Contraseña</label>
                 <input
                   className="form-control"
-                  type="text"
+                  type='password'
                   name="contrasenha"
                   value={empleadoSeleccionado && empleadoSeleccionado.contrasenha}
                   onChange={handleChange}

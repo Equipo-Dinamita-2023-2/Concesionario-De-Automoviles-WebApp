@@ -11,6 +11,7 @@ import Terminos from './paginas/terminos';
 import Privacidad from './paginas/privacidad';
 import Error from './paginas/error';
 import Login from './paginas/login';
+import Roles from './paginas/roles';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/preguntas' element={<Preguntas/>}></Route>
         <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
         <Route path='/privacidad' element={<Privacidad/>}></Route>
+        <Route path='/roles' element={<Roles/>}></Route>
       </Routes>
     </Router>
   );

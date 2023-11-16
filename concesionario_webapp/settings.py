@@ -99,18 +99,7 @@ WSGI_APPLICATION = 'concesionario_webapp.wsgi.application'
 # Configuración base de datos PostgreSQL desplegada en Render
 # DATABASE_URL se encuentra en .env
 DATABASES = {
-<<<<<<< HEAD
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'concesionario',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-=======
     'default': dj_database_url.parse(env('DATABASE_URL'))
->>>>>>> main
 }
 
 

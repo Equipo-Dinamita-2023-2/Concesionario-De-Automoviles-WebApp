@@ -12,6 +12,7 @@ import Privacidad from './paginas/privacidad';
 import Error from './paginas/error';
 import Login from './paginas/login';
 import Roles from './paginas/roles';
+import Sucursales from './paginas/sucursales';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
         <Route path='/privacidad' element={<Privacidad/>}></Route>
         <Route path='/roles' element={<Roles/>}></Route>
+        <Route path='/sucursales' element={<Sucursales/>}></Route>
       </Routes>
     </Router>
   );

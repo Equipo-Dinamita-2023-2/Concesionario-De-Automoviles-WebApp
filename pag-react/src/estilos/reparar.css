@@ -1,0 +1,96 @@
+
+/*Información del cliente*/
+.subtitulos{
+    text-align: left;
+    padding-left: 50px;
+}
+
+.formulario-reparar{
+    background-color:aliceblue;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.label-reparar{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.input-reparar{
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+/*Botón*/
+
+#boton-reparar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:15px;
+}
+
+.cta {
+    border: none;
+    background: none;
+    margin-bottom: 15px;
+    cursor: pointer;
+    
+}
+
+.cta span {
+    padding-bottom: 7px;
+    letter-spacing: 4px;
+    font-size: 14px;
+    padding-right: 15px;
+    text-transform: uppercase;
+}
+
+.cta svg {
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+    transform: translateX(0);
+}
+
+.cta:active svg {
+    transform: scale(0.9);
+}
+
+.hover-underline-animation {
+    position: relative;
+    color: black;
+    padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+

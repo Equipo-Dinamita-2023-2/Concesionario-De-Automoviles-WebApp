@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'core',
     'cliente',
     'cotizacion',
+    'orden_de_reparacion',
     'vendedor',
     'tallerista',
 ]

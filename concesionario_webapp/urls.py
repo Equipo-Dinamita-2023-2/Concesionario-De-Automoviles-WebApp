@@ -18,11 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from cliente import urls as cliente_urls
 from cotizacion import urls as cotizacion_urls
+from orden_de_reparacion import urls as or_urls
+from tallerista import urls as tallerista_urls
+from vendedor import urls as vendedor_urls
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cliente/', include(cliente_urls)),
     path('cotizacion/', include(cotizacion_urls)),
-    path('vendedor/', include('vendedor.urls')),
-    path('tallerista/', include('tallerista.urls')),
+    path('orden_de_reparacion/', include(or_urls)),
+    path('tallerista/', include(tallerista_urls)),
+    path('vendedor/', include(vendedor_urls)),
 ]

@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
-# Mostrar en admin site para rruebas de BD
+# Mostrar en admin site para pruebas de BD
 # admin.site.register(Sucursal)
 # admin.site.register(Cliente)
 # admin.site.register(RolEmpleado)

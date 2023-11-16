@@ -9,7 +9,7 @@ class Sucursal(models.Model):
     direccion = models.CharField(max_length=30)
     celular = models.CharField(max_length=10)
     fijo = models.CharField(max_length=10)
-    correo = models.CharField(max_length=30)
+    correo = models.CharField(max_length=50)
 
     # Mostrar en Django Admin
     def __str__(self):
@@ -18,11 +18,11 @@ class Sucursal(models.Model):
 
 class Cliente(models.Model):
     id_cliente = models.AutoField(primary_key=True)
-    documento = models.CharField(max_length=10)
+    documento = models.CharField(max_length=10, unique=True)
     nombres = models.CharField(max_length=30)
     apellidos = models.CharField(max_length=30)
     celular = models.CharField(max_length=10)
-    correo = models.CharField(max_length=30)
+    correo = models.CharField(max_length=50)
     direccion = models.CharField(max_length=30)
     ciudad = models.CharField(max_length=15)
 
@@ -32,7 +32,7 @@ class Cliente(models.Model):
 
 class RolEmpleado(models.Model):
     id_rol = models.AutoField(primary_key=True)
-    tipo_rol = models.CharField(max_length=10)
+    tipo_rol = models.CharField(max_length=15)
 
     # Mostrar en Django Admin
     def __str__(self):
@@ -41,11 +41,11 @@ class RolEmpleado(models.Model):
 
 class Empleado(models.Model):
     id_empleado = models.AutoField(primary_key=True)
-    documento = models.CharField(max_length=10)
+    documento = models.CharField(max_length=10, unique=True)
     nombres = models.CharField(max_length=30)
     apellidos = models.CharField(max_length=30)
     celular = models.CharField(max_length=10)
-    correo = models.CharField(max_length=30)
+    correo = models.CharField(max_length=50)
     contrasenha = models.CharField(max_length=20)
     direccion = models.CharField(max_length=30)
     ciudad = models.CharField(max_length=15)

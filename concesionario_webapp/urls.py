@@ -22,6 +22,7 @@ from orden_de_reparacion import urls as or_urls
 from tallerista import urls as tallerista_urls
 from vendedor import urls as vendedor_urls
 from venta import urls as venta_urls
+from sucursal import urls as sucursal_urls
 
 
 urlpatterns = [
@@ -32,4 +33,5 @@ urlpatterns = [
     path('tallerista/', include(tallerista_urls)),
     path('vendedor/', include(vendedor_urls)),
     path('venta/', include(venta_urls)),
+    path('sucursal/', include(sucursal_urls)),
 ]

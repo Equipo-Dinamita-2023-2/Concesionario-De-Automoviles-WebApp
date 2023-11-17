@@ -13,6 +13,7 @@ import Error from './paginas/error';
 import Login from './paginas/login';
 import Roles from './paginas/roles';
 import Sucursales from './paginas/sucursales';
+import Inventarios from './paginas/inventarios'
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
         <Route path='/privacidad' element={<Privacidad/>}></Route>
         <Route path='/roles' element={<Roles/>}></Route>
         <Route path='/sucursales' element={<Sucursales/>}></Route>
+        <Route path='/inventarios' element={<Inventarios/>}></Route>
+        
+
       </Routes>
     </Router>
   );

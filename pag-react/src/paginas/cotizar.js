@@ -8,18 +8,28 @@ function Informacion(){
         <>
         <form className="formulario-reparar">
             <label htmlFor="id-cliente" className="label-reparar">Identificación del cliente:</label>
-            <input type="text" id="id-cliente" name="id-cliente" className="input-reparar"required/>
+            <select className="seleccion">
+                <option selected="selected"  className="opciones">Identificación</option>
+                <option className="opciones"></option>
+                <option className="opciones"></option>
+                <option className="opciones"></option>
+            </select>
 
             <label htmlFor="placa" className="label-reparar">Placa:</label>
-            <input type="text" id="placa" name="placa" className="input-reparar"required/>
+            <select className="seleccion">
+                <option selected="selected" className="opciones">Placa</option>
+                <option className="opciones"></option>
+                <option className="opciones"></option>
+                <option className="opciones"></option>
+            </select>
             
             <label htmlFor="fechaCotizacion" className="label-reparar">Fecha de Cotización:</label>
             <input type="date" id="fechaCotizacion" name="fechaCotizacion" className="input-reparar" required/>
 
-            <label htmlFor="diasVigentes" className="label-reparar">Identificación del cliente:</label>
-            <input type="number" id="diasVigentes" name="diasVigentes" className="input-reparar"required/>
+            <label htmlFor="diasVigentes" className="label-reparar">Dias vigentes:</label>
+            <input type="number" min="1" max="31" id="diasVigentes" name="diasVigentes" className="input-reparar"required/>
 
-            <label htmlFor="id-tipoV" className="label-reparar">Identificación del cliente:</label>
+            <label htmlFor="id-tipoV" className="label-reparar">Identificación tipo vehiculo:</label>
             <input type="text" id="id-tipoV" name="id-tipoV" className="input-reparar"required/>
 
             <label htmlFor="descripcionCotizacion" className="label-reparar">Descripción de la cotización:</label>

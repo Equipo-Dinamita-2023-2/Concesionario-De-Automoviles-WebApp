@@ -22,27 +22,29 @@ function InformacionCliente(){
     <>
     <h2 className="subtitulos">Información del cliente</h2>
     <form className="formulario-reparar">
-    <label htmlFor="cedula" className="label-reparar">Cédula:</label>
-    <input type="text" id="cedula" name="cedula" className="input-reparar"required/>
+        <label htmlFor="cedula-reparar" className="label-reparar">Identificación:</label>
+        <select className="seleccion" required>
+            <option selected="selected" className="opciones">Identificación</option>
+            <option className="opciones"></option>
+            <option className="opciones"></option>
+            <option className="opciones"></option>
+        </select>
 
-    <label htmlFor="nombre" className="label-reparar">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" className="input-reparar" required/>
+        <label htmlFor="placa-reparar" className="label-reparar">Placa:</label>
+        <select className="seleccion" required>
+            <option selected="selected"  className="opciones">Placa</option>
+            <option className="opciones"></option>
+            <option className="opciones"></option>
+            <option className="opciones"></option>
+        </select>
 
-    <label htmlFor="apellidos" className="label-reparar">Apellidos:</label>
-    <input type="text" id="apellidos" name="apellidos" className="input-reparar" required/>
-
-    <label htmlFor="celular" className="label-reparar">Celular:</label>
-    <input type="tel" id="celular" name="celular" className="input-reparar" required/>
-
-    <label htmlFor="correo" className="label-reparar">Correo Electrónico:</label>
-    <input type="email" id="correo" name="correo" className="input-reparar" required/>
-
-    <label htmlFor="direccion" className="label-reparar">Dirección:</label>
-    <input type="text" id="direccion" name="direccion" className="input-reparar" required/>
-
-    <label htmlFor="ciudad" className="label-reparar">Ciudad:</label>
-    <input type="text" id="ciudad" name="ciudad" className="input-reparar" required/>
-
+        <label htmlFor="idVehiculo" className="label-reparar">Identificación tipo vehículo:</label>
+        <select className="seleccion" required>
+            <option selected="selected"  className="opciones">Identificación tipo vehículo</option>
+            <option className="opciones"></option>
+            <option className="opciones"></option>
+            <option className="opciones"></option>
+        </select>
     </form>
     </>
     )
@@ -54,36 +56,18 @@ function InformacionVendedor(){
         <h2 className="subtitulos">Información del vendedor</h2>
         <form className="formulario-reparar">
             <label htmlFor="id-vendedor" className="label-reparar">Identificación:</label>
-            <input type="text" id="id-vendedor" name="id-vendedor" className="input-reparar"required/>
+            <select className="seleccion" required>
+            <option selected="selected"  className="opciones">Identificación</option>
+            <option className="opciones"></option>
+            <option className="opciones"></option>
+            <option className="opciones"></option>
+        </select>
 
         </form>
         </>
     );
 }
 
-function InformacionVehiculo(){
-    return(
-    <>
-    <h2 className="subtitulos">Información del vehículo</h2>
-    <form className="formulario-reparar">
-    <label htmlFor="placa" className="label-reparar">Placa:</label>
-    <input type="text" id="placa" name="placa" className="input-reparar" required/>
-
-    <label htmlFor="marca" className="label-reparar">Marca:</label>
-    <input type="text" id="marca" name="marca" className="input-reparar" required/>
-
-    <label htmlFor="modelo" className="label-reparar">Modelo:</label>
-    <input type="text" id="modelo" name="modelo" className="input-reparar" required/>
-
-    <label htmlFor="anio" className="label-reparar">Año:</label>
-    <input type="bday-year" id="anio" name="anio" className="input-reparar" required/>
-
-    <label htmlFor="color" className="label-reparar">Color:</label>
-    <input type="text" id="color" name="color" className="input-reparar" required/>    
-    </form>
-    </>
-    )
-}
 
 function DetallesProblema(){
     return(
@@ -91,17 +75,17 @@ function DetallesProblema(){
     <h2 className="subtitulos">Detalles del ingreso</h2>
     <form className="formulario-reparar">
     
-    <label htmlFor="fechaIngreso" className="label-reparar">Fecha de Ingreso:</label>
-    <input type="date" id="fechaIngreso" name="fechaIngreso" className="input-reparar" required/>
+    <label htmlFor="fechaIngreso-reparar" className="label-reparar">Fecha de Ingreso:</label>
+    <input type="date" id="fechaIngreso-reparar" name="fechaIngreso" className="input-reparar" required/>
 
-    <label htmlFor="estadoReparacion" className="label-reparar">Estado de reparación:</label>
+    <label htmlFor="estadoReparacion-reparar" className="label-reparar">Estado de reparación:</label>
     <input type="text" id="estadoReparacion" name="estadoReparacion" className="input-reparar" required/>
 
     
     <label htmlFor="descripcionProblema" className="label-reparar">Descripción del Problema:</label>
     <textarea id="descripcionProblema" name="descripcionProblema" rows="4" className="input-reparar" required></textarea>
 
-    <label htmlFor="repuestos" className="label-reparar">Repuestos:</label>
+    <label htmlFor="repuestos-reparar" className="label-reparar">Repuestos:</label>
     <textarea id="repuestos" name="repuestos" rows="4" className="input-reparar"></textarea>    
     </form>
 
@@ -126,7 +110,6 @@ function Reparar(){
             <h1 className="titulos">Reparar</h1>
             <InformacionCliente/>
             <InformacionVendedor/>
-            <InformacionVehiculo/>
             <DetallesProblema/>
             <Footer/>
         </>

@@ -11,6 +11,7 @@ import Terminos from './paginas/terminos';
 import Privacidad from './paginas/privacidad';
 import Error from './paginas/error';
 import Login from './paginas/login';
+import Cotizar from './paginas/cotizar';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path='/inicio' element={<Inicio/>}></Route>
         <Route path='/productos' element={<Productos/>}></Route>
         <Route path='/reparar' element={<Reparar/>}></Route>
-        <Route path='/cotizar' element={<Cotizacion/>}></Route>
+        <Route path='/cotizar' element={<Cotizar/>}></Route>
         <Route path='/pagos-envios' element={<PagoEnvio/>}></Route>
         <Route path='/devoluciones' element={<Devoluciones/>}></Route>
         <Route path='/preguntas' element={<Preguntas/>}></Route>

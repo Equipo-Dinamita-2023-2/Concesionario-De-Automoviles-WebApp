@@ -94,3 +94,29 @@
     transform-origin: bottom left;
 }
 
+#fechaIngreso-reparar, #estadoReparacion{
+    text-align: center;
+}
+
+/*COTIZAR*/
+
+.seleccion{
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    /* Otros estilos opcionales para personalizar la apariencia del select */
+    border: 1px solid #ccc;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.opciones{
+    text-align: center;
+}
+
+#fechaCotizacion, #diasVigentes, #id-tipoV{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}

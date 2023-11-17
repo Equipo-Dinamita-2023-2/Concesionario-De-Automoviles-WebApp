@@ -28,10 +28,13 @@ from sucursal import urls as sucursal_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cliente/', include(cliente_urls)),
-    path('cotizacion/', include(cotizacion_urls)),
+    path('cotizaciones/', include(cotizacion_urls)),
+    path('empleado/', include('empleado.urls')),
     path('orden_de_reparacion/', include(or_urls)),
-    path('tallerista/', include(tallerista_urls)),
-    path('vendedor/', include(vendedor_urls)),
-    path('venta/', include(venta_urls)),
     path('sucursal/', include(sucursal_urls)),
+    path('tallerista/', include(tallerista_urls)),
+    path('tipovehiculo/', include('tipoVehiculo.urls')),
+    path('vehiculo/', include('Vehiculos.urls')),
+    path('vendedor/', include(vendedor_urls)),
+    path('venta/', include(venta_urls))
 ]

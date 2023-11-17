@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-e6=3gb-=)z#p%f(!ms&pms#h#b0)h8=m!vgd1wjz#qfn3=!g=1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'localhost']
 
 
 # Application definition
@@ -149,9 +149,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Autorizaciones de cors
-CORS_ALLOWED_ORIGINS = []
 
 # Autorizaciones de cors
 CORS_ALLOWED_ORIGINS = []

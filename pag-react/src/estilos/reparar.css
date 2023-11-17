@@ -29,6 +29,7 @@
     width: 50%;
     padding: 10px;
     border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
 }
 
 
@@ -106,7 +107,6 @@
     width: 50%;
     padding: 10px;
     border-radius: 10px;
-    /* Otros estilos opcionales para personalizar la apariencia del select */
     border: 1px solid #ccc;
     font-size: 16px;
     font-family: 'Poppins', sans-serif;

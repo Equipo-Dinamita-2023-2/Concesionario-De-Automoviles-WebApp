@@ -1,29 +1,70 @@
+import { useEffect,useState } from "react";
 import Cabecera from "../componentes/cabecera";
 import Footer from "../componentes/footer";
 import ContenedorConImagen from "../componentes/contenedorImagen";
 import publicidad from "../imagenes/mujer-eligiendo-automovil-sala-exposicion-automoviles.jpg"
+import { obtenerCliente } from "../api/cliente-api";
+import { obtenerVehiculos } from "../api/vehiculo-api";
+
+function IdCliente(){
+    const [clientes, setClientes] = useState([]);
+    useEffect(() => {
+        async function cargarCliente() {
+            try {
+                const res = await obtenerCliente();
+                setClientes(res);
+            } catch (error) {
+                console.error('Error al cargar cliente:', error);
+            }
+        }
+        cargarCliente();
+    }, []);
+
+    return(
+        <>
+        <label htmlFor="id-cliente" className="label-reparar">Identificación:</label>
+        <select className="seleccion" required>
+            <option className="opciones" disabled>Selecciona una identificación</option>
+            {clientes.map((cliente, index) => (
+            <option className="opciones" key={index} value={cliente.nombres}>{`${cliente.documento} - ${cliente.nombres}`}</option>
+            ))}
+        </select>
+        </>
+
+    );
+}
+
+function Placa(){
+    const [vehiculos, setVehiculo] = useState([]);
+    useEffect(() => {
+        async function cargarVehiculos() {
+            try {
+                const res = await obtenerVehiculos();
+                setVehiculo(res);
+            } catch (error) {
+                console.error('Error al cargar vehiculos:', error);
+            }
+        }
+        cargarVehiculos();
+    }, []);
+
+    return(
+        <>
+        <label htmlFor="placa" className="label-reparar">Placa:</label>
+        <select className="seleccion" required>
+        <option className="opciones" disabled>Seleccione una placa</option>
+            {vehiculos.map((vehiculo, index) => (
+            <option className="opciones" key={index} value={vehiculo.placa}>{vehiculo.placa}</option>
+            ))}
+        </select>
+        </>
+    );
+}
 
 function Informacion(){
     return(
-        <>
-        <form className="formulario-reparar">
-            <label htmlFor="id-cliente" className="label-reparar">Identificación del cliente:</label>
-            <select className="seleccion">
-                <option selected="selected"  className="opciones">Identificación</option>
-                <option className="opciones"></option>
-                <option className="opciones"></option>
-                <option className="opciones"></option>
-            </select>
-
-            <label htmlFor="placa" className="label-reparar">Placa:</label>
-            <select className="seleccion">
-                <option selected="selected" className="opciones">Placa</option>
-                <option className="opciones"></option>
-                <option className="opciones"></option>
-                <option className="opciones"></option>
-            </select>
-            
-            <label htmlFor="fechaCotizacion" className="label-reparar">Fecha de Cotización:</label>
+    <>
+    <label htmlFor="fechaCotizacion" className="label-reparar">Fecha de Cotización:</label>
             <input type="date" id="fechaCotizacion" name="fechaCotizacion" className="input-reparar" required/>
 
             <label htmlFor="diasVigentes" className="label-reparar">Dias vigentes:</label>
@@ -43,20 +84,22 @@ function Informacion(){
                     </svg>
                 </button>
             </div>
-        </form>
-        </>
-
-    );
+    </>
+    )
 }
 
 function Cotizar(){
-    
+
     return(
         <div>
             <Cabecera/>
             <ContenedorConImagen imagen={publicidad}/>
             <h1 className="titulos">Cotizar</h1>
-            <Informacion/>
+            <form className="formulario-reparar">
+                <IdCliente/>
+                <Placa/>
+                <Informacion/>
+            </form>
             <Footer/>
         </div>
         

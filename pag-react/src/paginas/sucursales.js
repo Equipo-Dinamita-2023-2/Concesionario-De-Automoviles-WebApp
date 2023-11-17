@@ -49,7 +49,7 @@ function Sucursales() {
             sucursal.fijo=sucursalSeleccionado.fijo;
             sucursal.correo=sucursalSeleccionado.correo;
           }
-        });
+        }); 
 
         setData(dataNueva);
         setModalEditar(false);

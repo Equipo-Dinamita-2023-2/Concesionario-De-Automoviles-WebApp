@@ -15,7 +15,7 @@ function Roles() {
     { id_empleado: 3, documento:0, nombre: "Yessenia", apellidos: "Rivas",celular:1441,correo:"yrivas@gmail.com",
     contrasenha:"",direccion:"Cr5#89", ciudad: "B/quilla", rol:"Vendedor" },
 
-      ];
+      ]; 
     
       const [data, setData] = useState(new_trabajadores);
       const [modalEditar, setModalEditar] = useState(false);

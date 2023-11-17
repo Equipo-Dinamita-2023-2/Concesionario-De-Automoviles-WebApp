@@ -12,7 +12,7 @@ import Privacidad from './paginas/privacidad';
 import Error from './paginas/error';
 import Login from './paginas/login';
 import Roles from './paginas/roles';
-import clientes from './paginas/clientes';
+import Clientes from './paginas/clientes';
 
 function App() {
   return (

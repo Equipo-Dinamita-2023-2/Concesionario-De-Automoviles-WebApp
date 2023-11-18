@@ -12,6 +12,7 @@ import Privacidad from './paginas/privacidad';
 import Error from './paginas/error';
 import Login from './paginas/login';
 import Cotizar from './paginas/cotizar';
+import Progreso from './paginas/progreso';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/preguntas' element={<Preguntas/>}></Route>
         <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
         <Route path='/privacidad' element={<Privacidad/>}></Route>
+        <Route path='/progreso' element={<Progreso/>}></Route>
       </Routes>
     </Router>
   );

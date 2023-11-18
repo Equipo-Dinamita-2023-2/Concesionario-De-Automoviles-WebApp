@@ -17,24 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from cliente import urls as cliente_urls
-from cotizacion import urls as cotizacion_urls
-from orden_de_reparacion import urls as or_urls
-from tallerista import urls as tallerista_urls
-from vendedor import urls as vendedor_urls
-from venta import urls as venta_urls
-from sucursal import urls as sucursal_urls
-
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', TemplateView.as_view(template_name='index.html')),
     path('cliente/', include(cliente_urls)),
-    path('cotizaciones/', include(cotizacion_urls)),
-    path('empleado/', include('empleado.urls')),
-    path('orden_de_reparacion/', include(or_urls)),
-    path('sucursal/', include(sucursal_urls)),
-    path('tallerista/', include(tallerista_urls)),
+    path('reparacion/', include('orden_reparacion.urls')),
+    path('venta/', include('venta.urls')),
+    path('vehiculo/', include('Vehiculos.urls')),
     path('tipovehiculo/', include('tipoVehiculo.urls')),
     path('vehiculo/', include('Vehiculos.urls')),
-    path('vendedor/', include(vendedor_urls)),
-    path('venta/', include(venta_urls))
 ]

@@ -27,6 +27,22 @@
 
 .navbar{
     display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.lista-inicio{
+    margin-bottom: 10px;
+}
+
+.link-cabecera{
+    color:#fff;
+    text-decoration: none;
+}
+
+.link-cabecera:hover{
+    color:red;
+    text-decoration: underline;
 }
 
 .navbar a{
@@ -35,6 +51,8 @@
     padding: 5px 0;
     margin: 0px 20px;
     transition: all .50s ease;
+    color: #fff;
+    text-decoration: none;
 }
 
 .navbar a:hover{
@@ -129,6 +147,19 @@
     }
 }
 
-footer a:hover {
+.footer-column ul{
+    padding: 0;
+}
+.footer-column ul li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.footer-column a{
+    color: #fff;
+    text-decoration: none;
+}
+.footer-column a:hover{
+    color: red;
     text-decoration: none;
 }

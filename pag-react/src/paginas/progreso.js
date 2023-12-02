@@ -8,7 +8,7 @@ import '../estilos/progreso.css';
 
 function Progreso() {
     const [etapa, setEtapa] = useState(1);
-    const estadoReparacion = 'entregado';
+    const estadoReparacion = 'en_progreso';
     
     useEffect(() => {
         switch (estadoReparacion) {

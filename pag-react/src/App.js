@@ -2,7 +2,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Inicio from './paginas/inicio';
 import Productos from './paginas/productos';
 import Reparar from './paginas/reparar';
-import Cotizacion from './paginas/cotizacion2';
+//import Cotizacion from './paginas/cotizacion2';
 import './estilos/general.css'
 import PagoEnvio from './paginas/pagos-envios';
 import Devoluciones from './paginas/devoluciones';
@@ -13,6 +13,7 @@ import Error from './paginas/error';
 import Login from './paginas/login';
 import Cotizar from './paginas/cotizar';
 import Progreso from './paginas/progreso';
+import GestionEmpleado from './paginas/gestionEmpleado';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
         <Route path='/privacidad' element={<Privacidad/>}></Route>
         <Route path='/progreso' element={<Progreso/>}></Route>
+        <Route path='/empleado' element={<GestionEmpleado/>}></Route>
       </Routes>
     </Router>
   );

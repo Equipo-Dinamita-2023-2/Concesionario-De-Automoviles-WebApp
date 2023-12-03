@@ -19,7 +19,7 @@ function Login() {
             } else {
                 alert('Intente de nuevo.');
             }
-        } else if(username == 'cliente'){
+        } else if(username === 'cliente'){
             navigate('/progreso')
         }
     };

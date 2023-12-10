@@ -16,6 +16,7 @@ import Progreso from './paginas/progreso';
 import GestionEmpleado from './paginas/gestionEmpleado';
 import GestionSucursal from './paginas/gestionSucursal';
 import GestionVehiculo from './paginas/gestionarVehiculo';
+import GestionRepuesto from './paginas/gestionRepuestos';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path='/empleado' element={<GestionEmpleado/>}></Route>
         <Route path='/sucursal' element={<GestionSucursal/>}></Route>
         <Route path='/vehiculo' element={<GestionVehiculo/>}></Route>
+        <Route path='/repuesto' element={<GestionRepuesto/>}></Route>
       </Routes>
     </Router>
   );

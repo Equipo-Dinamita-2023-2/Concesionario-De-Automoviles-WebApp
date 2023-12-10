@@ -14,6 +14,7 @@ import Login from './paginas/login';
 import Cotizar from './paginas/cotizar';
 import Progreso from './paginas/progreso';
 import GestionEmpleado from './paginas/gestionEmpleado';
+import GestionSucursal from './paginas/gestionSucursal';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path='/privacidad' element={<Privacidad/>}></Route>
         <Route path='/progreso' element={<Progreso/>}></Route>
         <Route path='/empleado' element={<GestionEmpleado/>}></Route>
+        <Route path='/sucursal' element={<GestionSucursal/>}></Route>
       </Routes>
     </Router>
   );

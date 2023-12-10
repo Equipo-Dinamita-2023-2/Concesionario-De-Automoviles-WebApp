@@ -15,6 +15,7 @@ import Cotizar from './paginas/cotizar';
 import Progreso from './paginas/progreso';
 import GestionEmpleado from './paginas/gestionEmpleado';
 import GestionSucursal from './paginas/gestionSucursal';
+import GestionVehiculo from './paginas/gestionarVehiculo';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path='/progreso' element={<Progreso/>}></Route>
         <Route path='/empleado' element={<GestionEmpleado/>}></Route>
         <Route path='/sucursal' element={<GestionSucursal/>}></Route>
+        <Route path='/vehiculo' element={<GestionVehiculo/>}></Route>
       </Routes>
     </Router>
   );

@@ -17,6 +17,8 @@ import GestionEmpleado from './paginas/gestionEmpleado';
 import GestionSucursal from './paginas/gestionSucursal';
 import GestionVehiculo from './paginas/gestionarVehiculo';
 import GestionRepuesto from './paginas/gestionRepuestos';
+import GestionCliente from './paginas/gestionCliente';
+import BarraLateral from './componentes/barraLateral';
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
         <Route path='/sucursal' element={<GestionSucursal/>}></Route>
         <Route path='/vehiculo' element={<GestionVehiculo/>}></Route>
         <Route path='/repuesto' element={<GestionRepuesto/>}></Route>
+        <Route path='/cliente' element={<GestionCliente/>}></Route>
+        <Route path='/barra' element={<BarraLateral/>}></Route>
       </Routes>
     </Router>
   );

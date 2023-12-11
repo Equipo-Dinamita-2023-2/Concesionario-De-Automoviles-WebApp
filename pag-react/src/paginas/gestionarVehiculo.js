@@ -49,7 +49,7 @@ const GestionVehiculo = () => {
 
     const validarCampos = async () => {
         if (
-            3==4
+            !placa || !idTipoV || !tipo_uso || !url
         ) {
             mostrar_alerta('Recuerda rellenar todos los campos', 'warning');
             return;

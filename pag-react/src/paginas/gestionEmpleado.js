@@ -74,16 +74,8 @@ const GestionEmpleado = () => {
 
     const validarCampos = async () => {
         if (
-            !documento.trim() ||
-            !nombre.trim() ||
-            !apellidos.trim() ||
-            !celular.trim() ||
-            !correo.trim() ||
-            !password.trim() ||
-            !direccion.trim() ||
-            !ciudad.trim() ||
-            !idRol||
-            !idSucursal
+            !documento || !nombre || !apellidos || !celular || !correo || 
+            !password || !direccion || !ciudad || !idRol || !idSucursal
         ) {
             mostrar_alerta('Recuerda rellenar todos los campos', 'warning');
             return;

@@ -59,7 +59,7 @@ const GestionSucursal = () => {
 
     const validarCampos = async () => {
         if (
-            3==4
+            !ciudad || !direccion || !celular || !fijo || !correo
         ) {
             mostrar_alerta('Recuerda rellenar todos los campos', 'warning');
             return;

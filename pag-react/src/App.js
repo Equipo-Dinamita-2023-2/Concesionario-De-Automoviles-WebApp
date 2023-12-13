@@ -13,12 +13,8 @@ import Error from './paginas/error';
 import Login from './paginas/login';
 import Cotizar from './paginas/cotizar';
 import Progreso from './paginas/progreso';
-import GestionEmpleado from './paginas/gestionEmpleado';
-import GestionSucursal from './paginas/gestionSucursal';
-import GestionVehiculo from './paginas/gestionarVehiculo';
-import GestionRepuesto from './paginas/gestionRepuestos';
-import GestionCliente from './paginas/gestionCliente';
 import BarraLateral from './componentes/barraLateral';
+import Gerente from './paginas/vistaGerente'
 
 function App() {
   return (
@@ -36,12 +32,8 @@ function App() {
         <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
         <Route path='/privacidad' element={<Privacidad/>}></Route>
         <Route path='/progreso' element={<Progreso/>}></Route>
-        <Route path='/empleado' element={<GestionEmpleado/>}></Route>
-        <Route path='/sucursal' element={<GestionSucursal/>}></Route>
-        <Route path='/vehiculo' element={<GestionVehiculo/>}></Route>
-        <Route path='/repuesto' element={<GestionRepuesto/>}></Route>
-        <Route path='/cliente' element={<GestionCliente/>}></Route>
         <Route path='/barra' element={<BarraLateral/>}></Route>
+        <Route path='/gerente' element={<Gerente/>}></Route>
       </Routes>
     </Router>
   );

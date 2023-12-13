@@ -5,6 +5,7 @@ function Preguntas(){
     return(
         <>
         <Cabecera/>
+        Preguntas
         <Footer/>
         </>
     )

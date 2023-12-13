@@ -13,8 +13,8 @@ import Error from './paginas/error';
 import Login from './paginas/login';
 import Cotizar from './paginas/cotizar';
 import Progreso from './paginas/progreso';
-import BarraLateral from './componentes/barraLateral';
 import Gerente from './paginas/vistaGerente'
+import Tallerista from './paginas/vistaTallerista';
 
 function App() {
   return (
@@ -32,8 +32,8 @@ function App() {
         <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
         <Route path='/privacidad' element={<Privacidad/>}></Route>
         <Route path='/progreso' element={<Progreso/>}></Route>
-        <Route path='/barra' element={<BarraLateral/>}></Route>
         <Route path='/gerente' element={<Gerente/>}></Route>
+        <Route path='/tallerista' element={<Tallerista/>}></Route>
       </Routes>
     </Router>
   );

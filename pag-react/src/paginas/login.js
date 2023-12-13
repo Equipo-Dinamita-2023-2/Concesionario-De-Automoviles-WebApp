@@ -75,13 +75,13 @@ const handleAction = () => {
                     id_rol: empleado.id_rol
                 }));
                 setCredenciales(credencialesEmpleado);
-                console.log(credenciales)
+                console.log(credenciales);
             } catch (error) {
                 console.error("Error al cargar empleado:", error);
             }
         }
         cargarEmpleado();
-    }, []);
+    }, [credenciales]);
 
     useEffect(() => {
         async function cargarCodigo() {
@@ -92,13 +92,14 @@ const handleAction = () => {
                     cod_cliente: cliente.cod_cliente
                 }));
                 setCodigos(codigoCliente);
-                console.log(codigos)
+                console.log(codigos);
             } catch (error) {
                 console.error("Error al cargar cliente:", error);
             }
         }
         cargarCodigo();
-    }, []);
+    }, [codigos]);
+    
     return (
         <section className='section-login'>
             <div className="contenedor-login">

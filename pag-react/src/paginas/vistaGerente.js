@@ -31,7 +31,7 @@ const Gerente = () => {
         <div className='gerente'>
             <div className='contenido-gerente'>
                 <aside id='aside'>
-                    <BarraLateral mostrarContenido={mostrarContenido} />
+                    <BarraLateral mostrarContenido={mostrarContenido} modo={'gerente'} />
                 </aside>
                 <section id='section'>
                     {contenido}

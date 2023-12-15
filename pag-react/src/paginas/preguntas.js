@@ -5,7 +5,7 @@ function Preguntas(){
     return(
         <>
         <Cabecera/>
-        Preguntas
+            <h1>Preguntas sobre la empresa</h1>
         <Footer/>
         </>
     )

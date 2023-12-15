@@ -1,6 +1,6 @@
 import BarraLateral from '../componentes/barraLateral';
 import '../estilos/gerente.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import GestionEmpleado from './gestionEmpleado';
 import GestionRepuesto from './gestionRepuestos';
 import GestionSucursal from './gestionSucursal';
@@ -24,9 +24,14 @@ const Gerente = () => {
                 setContenido(<GestionRepuesto />);
                 break;
             default:
-                setContenido(null);
+                setContenido(<GestionEmpleado />);
         }
     };
+
+    useEffect(() => {
+        mostrarContenido('empleado');
+    }, []);
+
     return (
         <div className='gerente'>
             <div className='contenido-gerente'>
@@ -38,7 +43,7 @@ const Gerente = () => {
                 </section>
             </div>
         </div>
-    )
+    );
 }
 
 export default Gerente;

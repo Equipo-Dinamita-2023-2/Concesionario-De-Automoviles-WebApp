@@ -5,30 +5,56 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { TbUserCheck } from "react-icons/tb";
 import { MdOutlineDone } from "react-icons/md";
 import '../estilos/progreso.css';
+import { obtenerReparaciones } from '../api/reparacion-api';
+import { useUsername } from '../componentes/username';
+import Footer from '../componentes/footer.js';
 
-function Progreso() {
+
+function ProgresoCodigo() {
+    const { username } = useUsername();
     const [etapa, setEtapa] = useState(1);
-    const estadoReparacion = 'en_progreso';
+    const [estadoReparacion, setEstadoReparacion] = useState('');
+
+    useEffect(() => {
+        async function cargarReparaciones() {
+            try {
+                const res = await obtenerReparaciones();
+                
+                // Filtra las reparaciones donde cod_cliente es igual al username
+                const reparacionesUsuario = res.filter(reparacion => reparacion.cod_cliente === username);
+                
+                // Extrae el estado_reparacion de la primera reparación del usuario
+                const estado = reparacionesUsuario.length > 0 ? reparacionesUsuario[0].estado_reparacion : '';
+                
+                console.log('Username en Progreso:', username);
+                setEstadoReparacion(estado);
+                console.log(estado);
+                
+            } catch (error) {
+                console.error("Error al cargar el estado de reparación:", error);
+            }
+        }
+        cargarReparaciones();
+    }, [username]);
     
     useEffect(() => {
         switch (estadoReparacion) {
-            case 'en_proceso':
+            case 'En proceso':
                 setEtapa(1);
                 break;
-            case 'pruebas':
+            case 'Pruebas':
                 setEtapa(2);
                 break;
-            case 'finalizado':
+            case 'Finalizado':
                 setEtapa(3);
                 break;
-            case 'entregado':
+            case 'Entregado':
                 setEtapa(4);
                 break;
             default:
-                setEtapa(1);
+                console.log('error');
         }
     }, [estadoReparacion]);
-    
     return (
     <>
     
@@ -73,6 +99,16 @@ function Progreso() {
     </div>
     </>
   );
+}
+
+function Progreso(){
+    return(
+        <>
+        <h1 className='titulos'>Estado de reparación</h1>
+        <ProgresoCodigo/>
+        <Footer/>
+        </>
+    )
 }
 
 export default Progreso;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { obtenerCliente, crearCliente, eliminarCliente, actualizarCliente } from "../api/cliente-api"; 
+import { obtenerCliente, crearCliente, eliminarCliente, actualizarCliente } from "../api/cliente-api";
 import { mostrar_alerta } from "../componentes/funciones";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
@@ -17,6 +17,15 @@ const GestionCliente = () => {
     const [ciudad, setCiudad] = useState("");
     const [operacion, setOperacion] = useState('');
     const [title, setTitle] = useState('');
+    const [busqueda, setBusqueda] = useState('');
+
+    const handleBusquedaChange = (event) => {
+        setBusqueda(event.target.value);
+    };
+
+    const clientesFiltrados = cliente && cliente.filter((cliente) =>
+        `${cliente.documento} ${cliente.nombres} ${cliente.apellidos} ${cliente.ciudad}`.toLowerCase().includes(busqueda.toLowerCase())
+    );
 
     useEffect(() => {
         async function cargarCliente() {
@@ -65,8 +74,8 @@ const GestionCliente = () => {
 
     const validarCampos = async () => {
         if (
-            !documento || !nombre || !apellidos || !celular || 
-            !correo || !direccion || !ciudad 
+            !documento || !nombre || !apellidos || !celular ||
+            !correo || !direccion || !ciudad
         ) {
             mostrar_alerta('Recuerda rellenar todos los campos', 'warning');
             return;
@@ -129,42 +138,45 @@ const GestionCliente = () => {
 
     return (
         <>
+
             <div className="App">
+                <h1>Gestion de cliente</h1>
                 <div className="container-fluid">
+
                     <div className="row">
+
                         {/* Contenido principal */}
-                        <div className="col-md-9">
-                            <div className="row mt-3 align-items-center">
-                                <div className="col-6 text-end">
-                                    <div className="input-group">
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Buscar..."
-                                        />
-                                        <button className="btn btn-primary" type="button">
-                                            Buscar
-                                        </button>
+                        <div className="col-md-20">
+                            <div className="formularios-gestion d-flex flex-row align-items-center" >
+                                <div className="row mt-5 me-1 align-items-center">
+                                    <div className="col-20 text-end">
+                                        <div className="input-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Buscar..."
+                                                value={busqueda}
+                                                onChange={handleBusquedaChange}
+                                            />
+                                            <button className="btn btn-primary" type="button">
+                                                Buscar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-5">
-                                    <select className="form-select me-2">
-                                        <option value="todos">Todos</option>
-                                        <option value="activo">Activo</option>
-                                        <option value="inactivo">Inactivo</option>
-                                    </select>
-                                    {/* Botón de añadir */}
-                                    <button
-                                        className="btn btn-dark"
-                                        onClick={() => abrirModal(1)}
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalCliente"
-                                        style={{ maxWidth: '150px' }}
-                                    >
-                                        <i className="fa-solid fa-circle-plus"></i> Añadir
-                                    </button>
+                                <div className="row mt-5">
+                                    <div className="col-40">
+                                        {/* Botón de añadir */}
+                                        <button
+                                            className="btn btn-dark"
+                                            onClick={() => abrirModal(1)}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalCliente"
+                                            style={{ maxWidth: '150px' }}
+                                        >
+                                            <i className="fa-solid fa-circle-plus"></i> Añadir
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row mt-3">
@@ -185,7 +197,7 @@ const GestionCliente = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="table-group-divider">
-                                                    {cliente.map((cliente) => (
+                                                    {clientesFiltrados.map((cliente) => (
                                                         <tr>
                                                             <td>{cliente.documento}</td>
                                                             <td>{cliente.nombres}</td>

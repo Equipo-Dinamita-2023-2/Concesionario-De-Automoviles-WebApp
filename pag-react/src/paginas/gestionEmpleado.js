@@ -4,9 +4,13 @@ import { mostrar_alerta } from "../componentes/funciones";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import '../estilos/general.css'
+import { obtenerRoles } from "../api/roles-api";
+import { obtenerSucursal } from "../api/sucursal-api";
 
 const GestionEmpleado = () => {
     const [empleados, setEmpleados] = useState([]);
+    const [cargarRol, setCargarRol] = useState([]);
+    const [cargarSucursal, setCargarSucursal] = useState(null);
     const [id, setId] = useState("");
     const [documento, setDocumento] = useState("");
     const [nombre, setNombre] = useState("");
@@ -20,18 +24,60 @@ const GestionEmpleado = () => {
     const [idSucursal, setIdSucursal] = useState("");
     const [operacion, setOperacion] = useState('');
     const [title, setTitle] = useState('');
+    const [busqueda, setBusqueda] = useState('');
 
     useEffect(() => {
         async function cargarEmpleados() {
             try {
                 const res = await obtenerEmpleados();
                 setEmpleados(res);
-                console.log(res);
+
             } catch (error) {
                 console.error("Error al cargar empleado:", error);
             }
         }
         cargarEmpleados();
+    }, []);
+
+    const handleBusquedaChange = (event) => {
+        setBusqueda(event.target.value);
+    };
+
+    const empleadosFiltradas =empleados && empleados.filter((empleado) =>
+        `${empleado.documento} ${empleado.nombres} ${empleado.apellidos} ${empleado.id_rol} ${empleado.id_sucursal}`.toLowerCase().includes(busqueda.toLowerCase())
+    );
+
+    useEffect(() => {
+        async function cargarRol() {
+            try {
+                const roles = await obtenerRoles();
+                const idRol = roles.map((rol) => ({
+                    id_rol: rol.id_rol,
+                    tipo_rol: rol.tipo_rol
+                }));
+                setCargarRol(idRol);
+            } catch (error) {
+                console.error("Error al cargar los roles:", error);
+            }
+        }
+        cargarRol();
+    }, []);
+
+    useEffect(() => {
+        async function cargarSucursales() {
+            try {
+                const sucursales = await obtenerSucursal();
+                const idSucursal = sucursales.map((sucursal) => ({
+                    id_sucursal: sucursal.id_sucursal,
+                    ciudad: sucursal.ciudad,
+                    direccion: sucursal.direccion
+                }));
+                setCargarSucursal(idSucursal);
+            } catch (error) {
+                console.error("Error al cargar las sucursales:", error);
+            }
+        }
+        cargarSucursales();
     }, []);
 
     const abrirModal = (op, id, documento, nombres, apellidos, celular, correo, password,
@@ -74,7 +120,7 @@ const GestionEmpleado = () => {
 
     const validarCampos = async () => {
         if (
-            !documento || !nombre || !apellidos || !celular || !correo || 
+            !documento || !nombre || !apellidos || !celular || !correo ||
             !password || !direccion || !ciudad || !idRol || !idSucursal
         ) {
             mostrar_alerta('Recuerda rellenar todos los campos', 'warning');
@@ -143,41 +189,42 @@ const GestionEmpleado = () => {
     return (
         <>
             <div className="App">
+                <h1>Gestion de empleados</h1>
                 <div className="container-fluid">
                     <div className="row">
+
                         {/* Contenido principal */}
-                        <div className="col-md-9">
-                            <div className="row mt-3 align-items-center">
-                                <div className="col-6 text-end">
-                                    <div className="input-group">
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Buscar..."
-                                        />
-                                        <button className="btn btn-primary" type="button">
-                                            Buscar
-                                        </button>
+                        <div className="col-md-20">
+                            <div className="formularios-gestion d-flex flex-row align-items-center" >
+                                <div className="row mt-5 me-1 align-items-center">
+                                    <div className="col-20 text-end">
+                                        <div className="input-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Buscar..."
+                                                value={busqueda}
+                                                onChange={handleBusquedaChange}
+                                            />
+                                            <button className="btn btn-primary" type="button">
+                                                Buscar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-5">
-                                    <select className="form-select me-2">
-                                        <option value="todos">Todos</option>
-                                        <option value="activo">Activo</option>
-                                        <option value="inactivo">Inactivo</option>
-                                    </select>
-                                    {/* Botón de añadir */}
-                                    <button
-                                        className="btn btn-dark"
-                                        onClick={() => abrirModal(1)}
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEmpleados"
-                                        style={{ maxWidth: '150px' }}
-                                    >
-                                        <i className="fa-solid fa-circle-plus"></i> Añadir
-                                    </button>
+                                <div className="row mt-5">
+                                    <div className="col-40">
+                                        {/* Botón de añadir */}
+                                        <button
+                                            className="btn btn-dark"
+                                            onClick={() => abrirModal(1)}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalEmpleados"
+                                            style={{ maxWidth: '150px' }}
+                                        >
+                                            <i className="fa-solid fa-circle-plus"></i> Añadir
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row mt-3">
@@ -201,7 +248,7 @@ const GestionEmpleado = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="table-group-divider">
-                                                    {empleados.map((empleado) => (
+                                                    {empleadosFiltradas.map((empleado) => (
                                                         <tr>
                                                             <td>{empleado.documento}</td>
                                                             <td>{empleado.nombres}</td>
@@ -308,14 +355,28 @@ const GestionEmpleado = () => {
 
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="fa-solid fa-users"></i></span>
-                                    <input type="number" id="rol" className="form-control" placeholder="Rol" value={idRol}
-                                        onChange={(e) => setIdRol(e.target.value)}></input>
+                                    <select className="form-control" required onChange={(e) => setIdRol(parseInt(e.target.value, 10))}>
+
+                                        <option value="" disabled selected>Selecciona el rol</option>
+                                        {cargarRol && cargarRol.map((rol, index) => (
+                                            <option key={index} value={rol.id_rol}>
+                                                {rol.tipo_rol}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
+
 
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="fa-solid fa-code-branch"></i></span>
-                                    <input type="number" id="nombre" className="form-control" placeholder="Sucursal" value={idSucursal}
-                                        onChange={(e) => setIdSucursal(e.target.value)}></input>
+                                    <select className="form-control" required onChange={(e) => setIdSucursal(parseInt(e.target.value, 10))}>
+                                        <option value="" disabled selected>Selecciona la sucursal</option>
+                                        {cargarSucursal && cargarSucursal.map((sucursal, index) => (
+                                            <option key={index} value={sucursal.id_sucursal}>
+                                                {`${sucursal.direccion} - ${sucursal.ciudad}`}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 <div className="d-grid col-6 mx-auto">

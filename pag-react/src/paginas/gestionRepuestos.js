@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { obtenerRepuesto, crearRepuesto, actualizarRepuesto, eliminarRepuesto } from "../api/repuesto-api"; 
+import { obtenerRepuesto, crearRepuesto, actualizarRepuesto, eliminarRepuesto } from "../api/repuesto-api";
 import { mostrar_alerta } from "../componentes/funciones";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-import '../estilos/general.css'
+import '../estilos/general.css';
+import { obtenerTipoV } from "../api/tipoV-api";
 
 const GestionRepuesto = () => {
     const [repuestos, setRepuestos] = useState([]);
+    const [cargarTipoV, setCargarTipoV] = useState([]);
     const [id, setId] = useState("");
     const [nombre, setNombre] = useState("");
     const [stock, setStock] = useState("");
@@ -16,6 +18,7 @@ const GestionRepuesto = () => {
     const [idTipoV, setIdTipoV] = useState("");
     const [operacion, setOperacion] = useState('');
     const [title, setTitle] = useState('');
+    const [busqueda, setBusqueda] = useState('');
 
     useEffect(() => {
         async function cargarRepuestos() {
@@ -28,6 +31,31 @@ const GestionRepuesto = () => {
             }
         }
         cargarRepuestos();
+    }, []);
+
+    const handleBusquedaChange = (event) => {
+        setBusqueda(event.target.value);
+    };
+
+    const repuestosFiltrados = repuestos && repuestos.filter((repuesto) =>
+        `${repuesto.nombre_repuesto} ${repuesto.precio} ${repuesto.id_tipo_vehiculo}`.toLowerCase().includes(busqueda.toLowerCase())
+    );
+
+    useEffect(() => {
+        async function cargarTipo() {
+            try {
+                const tipoV = await obtenerTipoV();
+                const id = tipoV.map((tipo) => ({
+                    id_tipo_vehiculo: tipo.id_tipo_vehiculo,
+                    modelo: tipo.modelo,
+                    marca: tipo.marca
+                }));
+                setCargarTipoV(id);
+            } catch (error) {
+                console.error("Error al cargar id tipo vehiculo:", error);
+            }
+        }
+        cargarTipo();
     }, []);
 
     const abrirModal = (op, id, nombre, stock, precio, url, descripcion, idTipoV) => {
@@ -46,12 +74,12 @@ const GestionRepuesto = () => {
             setTitle('Editar repuesto');
             setId(id);
             setNombre(nombre);
-        setStock(stock);
-        setPrecio(precio);
-        setUrl(url);
-        setDescripcion(descripcion);
-        setIdTipoV(idTipoV);
-            
+            setStock(stock);
+            setPrecio(precio);
+            setUrl(url);
+            setDescripcion(descripcion);
+            setIdTipoV(idTipoV);
+
         }
         window.setTimeout(function () {
             document.getElementById('nombre').focus();
@@ -125,41 +153,42 @@ const GestionRepuesto = () => {
     return (
         <>
             <div className="App">
+                <h1>Gestion de repuestos</h1>
                 <div className="container-fluid">
                     <div className="row">
+
                         {/* Contenido principal */}
-                        <div className="col-md-9">
-                            <div className="row mt-3 align-items-center">
-                                <div className="col-6 text-end">
-                                    <div className="input-group">
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Buscar..."
-                                        />
-                                        <button className="btn btn-primary" type="button">
-                                            Buscar
-                                        </button>
+                        <div className="col-md-20">
+                            <div className="formularios-gestion d-flex flex-row align-items-center" >
+                                <div className="row mt-5 me-1 align-items-center">
+                                    <div className="col-20 text-end">
+                                        <div className="input-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Buscar..."
+                                                value={busqueda}
+                                                onChange={handleBusquedaChange}
+                                            />
+                                            <button className="btn btn-primary" type="button">
+                                                Buscar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-5">
-                                    <select className="form-select me-2">
-                                        <option value="todos">Todos</option>
-                                        <option value="activo">Activo</option>
-                                        <option value="inactivo">Inactivo</option>
-                                    </select>
-                                    {/* Botón de añadir */}
-                                    <button
-                                        className="btn btn-dark"
-                                        onClick={() => abrirModal(1)}
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalRepuesto"
-                                        style={{ maxWidth: '150px' }}
-                                    >
-                                        <i className="fa-solid fa-circle-plus"></i> Añadir
-                                    </button>
+                                <div className="row mt-5">
+                                    <div className="col-40">
+                                        {/* Botón de añadir */}
+                                        <button
+                                            className="btn btn-dark"
+                                            onClick={() => abrirModal(1)}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalRepuesto"
+                                            style={{ maxWidth: '150px' }}
+                                        >
+                                            <i className="fa-solid fa-circle-plus"></i> Añadir
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row mt-3">
@@ -179,7 +208,7 @@ const GestionRepuesto = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="table-group-divider">
-                                                    {repuestos.map((repuesto) => (
+                                                    {repuestosFiltrados.map((repuesto) => (
                                                         <tr>
                                                             <td>{repuesto.nombre_repuesto}</td>
                                                             <td>{repuesto.stock}</td>
@@ -188,7 +217,7 @@ const GestionRepuesto = () => {
                                                             <td>{repuesto.descripcion}</td>
                                                             <td>{repuesto.id_tipo_vehiculo}</td>
                                                             <td>
-                                                                <button onClick={() => abrirModal(2, repuesto.id_tipo_vehiculo, repuesto.nombre_repuesto, repuesto.stock, repuesto.precio,repuesto.url, repuesto.descripcion, repuesto.id_tipo_vehiculo)}
+                                                                <button onClick={() => abrirModal(2, repuesto.id_tipo_vehiculo, repuesto.nombre_repuesto, repuesto.stock, repuesto.precio, repuesto.url, repuesto.descripcion, repuesto.id_tipo_vehiculo)}
                                                                     className="btn btn-warning" data-bs-toggle='modal' data-bs-target="#modalRepuesto">
                                                                     <i className="fa-solid fa-edit"></i>
                                                                 </button>
@@ -255,18 +284,25 @@ const GestionRepuesto = () => {
                                     <input type="text" id="url" className="form-control" placeholder="Url" value={url}
                                         onChange={(e) => setUrl(e.target.value)}></input>
                                 </div>
-                                
-                                
+
+
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="fa-solid fa-info"></i></span>
                                     <input type="text" id="descripcion" className="form-control" placeholder="Descripcion" value={descripcion}
                                         onChange={(e) => setDescripcion(e.target.value)}></input>
                                 </div>
 
+
                                 <div className="input-group mb-3">
-                                    <span className="input-group-text"><i className="fa-solid fa-car"></i></span>
-                                    <input type="number" id="idTipoV" className="form-control" placeholder="Id tipo vehiculo" value={idTipoV}
-                                        onChange={(e) => setIdTipoV(e.target.value)}></input>
+                                    <span className="input-group-text"><i className="fa-solid fa-car-side"></i></span>
+                                    <select className="form-control" required onChange={(e) => setIdTipoV(parseInt(e.target.value, 10))}>
+                                        <option value="" disabled selected>Seleccione el tipo de vehículo</option>
+                                        {cargarTipoV && cargarTipoV.map((tipo, index) => (
+                                            <option key={index} value={tipo.id_tipo_vehiculo}>
+                                                {`${tipo.marca} - ${tipo.modelo}`}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 <div className="d-grid col-6 mx-auto">

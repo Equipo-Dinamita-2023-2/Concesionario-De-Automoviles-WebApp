@@ -2,6 +2,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Inicio from './paginas/inicio';
 import Productos from './paginas/productos';
 import Reparar from './paginas/reparar';
+import './estilos/general.css';
 //import Cotizacion from './paginas/cotizacion2';
 import './estilos/general.css'
 import PagoEnvio from './paginas/pagos-envios';
@@ -15,6 +16,7 @@ import Cotizar from './paginas/cotizar';
 import Progreso from './paginas/progreso';
 import Gerente from './paginas/vistaGerente'
 import Tallerista from './paginas/vistaTallerista';
+import Cliente from './paginas/cliente';
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
         <Route path='/progreso' element={<Progreso/>}></Route>
         <Route path='/gerente' element={<Gerente/>}></Route>
         <Route path='/tallerista' element={<Tallerista/>}></Route>
+        <Route path='/cliente' element={<Cliente/>}></Route>
       </Routes>
     </Router>
   );

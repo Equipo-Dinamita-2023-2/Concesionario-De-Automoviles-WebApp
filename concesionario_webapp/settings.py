@@ -33,7 +33,8 @@ SECRET_KEY = 'django-insecure-e6=3gb-=)z#p%f(!ms&pms#h#b0)h8=m!vgd1wjz#qfn3=!g=1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app',
+                 'localhost', '.netlify.app', '.onrender.com']
 
 
 # Application definition
@@ -163,8 +164,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Autorizaciones de cors
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
-
-REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-}
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://localhost:8000",
+                        "https://concesionario-webapp.onrender.com", "postgres://concesionario_user:kJcN8G9AhbHIIpSOBiASDcPXfz09bU06@dpg-clabjo9arfss73dcedrg-a.oregon-postgres.render.com"]
+CORS_ALLOW_ALL_ORIGINS = True

@@ -30,7 +30,7 @@ const GestionEmpleado = () => {
             try {
                 const res = await obtenerEmpleados();
                 setEmpleados(res);
-                console.log(res);
+                
             } catch (error) {
                 console.error("Error al cargar empleado:", error);
             }
@@ -43,7 +43,8 @@ const GestionEmpleado = () => {
             try {
                 const roles = await obtenerRoles();
                 const idRol = roles.map((rol) => ({
-                    id_rol: rol.id_rol
+                    id_rol: rol.id_rol,
+                    tipo_rol: rol.tipo_rol
                 }));
                 setCargarRol(idRol);
             } catch (error) {
@@ -58,7 +59,9 @@ const GestionEmpleado = () => {
             try {
                 const sucursales = await obtenerSucursal();
                 const idSucursal = sucursales.map((sucursal) => ({
-                    id_sucursal: sucursal.id_sucursal
+                    id_sucursal: sucursal.id_sucursal,
+                    ciudad: sucursal.ciudad,
+                    direccion: sucursal.direccion
                 }));
                 setCargarSucursal(idSucursal);
             } catch (error) {
@@ -347,7 +350,7 @@ const GestionEmpleado = () => {
                                         <option value="" disabled selected>Selecciona el rol</option>
                                         {cargarRol && cargarRol.map((rol, index) => (
                                             <option key={index} value={rol.id_rol}>
-                                                {rol.id_rol}
+                                                {rol.tipo_rol}
                                             </option>
                                         ))}
                                     </select>
@@ -360,7 +363,7 @@ const GestionEmpleado = () => {
                                         <option value="" disabled selected>Selecciona la sucursal</option>
                                         {cargarSucursal && cargarSucursal.map((sucursal, index) => (
                                             <option key={index} value={sucursal.id_sucursal}>
-                                                {sucursal.id_sucursal}
+                                                {`${sucursal.direccion} - ${sucursal.ciudad}`}
                                             </option>
                                         ))}
                                     </select>

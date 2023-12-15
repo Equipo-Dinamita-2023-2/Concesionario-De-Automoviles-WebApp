@@ -37,7 +37,9 @@ const GestionRepuesto = () => {
             try {
                 const tipoV = await obtenerTipoV();
                 const id = tipoV.map((tipo) => ({
-                    id_tipo_vehiculo: tipo.id_tipo_vehiculo
+                    id_tipo_vehiculo: tipo.id_tipo_vehiculo,
+                    modelo: tipo.modelo,
+                    marca: tipo.marca
                 }));
                 setCargarTipoV(id);
             } catch (error) {
@@ -287,7 +289,7 @@ const GestionRepuesto = () => {
                                         <option value="" disabled selected>Seleccione el tipo de vehículo</option>
                                         {cargarTipoV && cargarTipoV.map((tipo, index) => (
                                             <option key={index} value={tipo.id_tipo_vehiculo}>
-                                                {tipo.id_tipo_vehiculo}
+                                                {`${tipo.marca} - ${tipo.modelo}`}
                                             </option>
                                         ))}
                                     </select>

@@ -6,27 +6,35 @@ import { TbUserCheck } from "react-icons/tb";
 import { MdOutlineDone } from "react-icons/md";
 import '../estilos/progreso.css';
 import { obtenerReparaciones } from '../api/reparacion-api';
+import { useUsername } from '../componentes/username';
+
 
 function Progreso() {
+    const { username } = useUsername();
     const [etapa, setEtapa] = useState(1);
-    const [estadoReparacion, setEstadoReparacion] = useState([]);
+    const [estadoReparacion, setEstadoReparacion] = useState('');
 
     useEffect(() => {
         async function cargarReparaciones() {
             try {
                 const res = await obtenerReparaciones();
-                const estado = res.map((estado) =>({
-                    estado_reparacion: estado.estado_reparacion
-                }))
-
-                console.log(estado)
+                
+                // Filtra las reparaciones donde cod_cliente es igual al username
+                const reparacionesUsuario = res.filter(reparacion => reparacion.cod_cliente === username);
+                
+                // Extrae el estado_reparacion de la primera reparación del usuario
+                const estado = reparacionesUsuario.length > 0 ? reparacionesUsuario[0].estado_reparacion : '';
+                
+                console.log('Username en Progreso:', username);
                 setEstadoReparacion(estado);
+                console.log(estado);
+                
             } catch (error) {
                 console.error("Error al cargar el estado de reparación:", error);
             }
         }
         cargarReparaciones();
-    }, []);
+    }, [username]);
     
     useEffect(() => {
         switch (estadoReparacion) {
@@ -43,10 +51,9 @@ function Progreso() {
                 setEtapa(4);
                 break;
             default:
-                setEtapa(1);
+                console.log('error');
         }
     }, [estadoReparacion]);
-    
     return (
     <>
     

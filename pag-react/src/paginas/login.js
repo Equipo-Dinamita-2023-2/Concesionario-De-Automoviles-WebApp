@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { obtenerEmpleados } from '../api/empleado-api'
 import { obtenerReparaciones } from '../api/reparacion-api';
+import { useUsername } from '../componentes/username';
 
 function Login() {
+    const { setAndSaveUsername } = useUsername();
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -57,6 +59,7 @@ const handleAction = () => {
         );
 
         if (codigoClienteValido) {
+            setAndSaveUsername(username);
             navigate('/progreso');
         } else {
             alert('Intente de nuevo.');

@@ -54,7 +54,9 @@ const GestionReparaciones = () => {
             try {
                 const tipoV = await obtenerTipoV();
                 const id = tipoV.map((tipo) => ({
-                    id_tipo_vehiculo: tipo.id_tipo_vehiculo
+                    id_tipo_vehiculo: tipo.id_tipo_vehiculo,
+                    marca: tipo.marca,
+                    modelo: tipo.modelo
                 }));
                 setCargarTipoV(id);
             } catch (error) {
@@ -70,7 +72,9 @@ const GestionReparaciones = () => {
             try {
                 const clientes = await obtenerCliente();
                 const idClientes = clientes.map((cliente) => ({
-                    id_cliente: cliente.id_cliente
+                    id_cliente: cliente.id_cliente,
+                    documento: cliente.documento,
+                    nombres: cliente.nombres
                 }));
                 setIdClientes(idClientes);
             } catch (error) {
@@ -101,7 +105,9 @@ const GestionReparaciones = () => {
             try {
                 const empleados = await obtenerEmpleados();
                 const id = empleados.map((empleado) => ({
-                    id_empleado: empleado.id_empleado
+                    id_empleado: empleado.id_empleado,
+                    documento: empleado.documento,
+                    nombres: empleado.nombres
                 }));
                 setCargarEmpleado(id);
             } catch (error) {
@@ -361,7 +367,7 @@ const GestionReparaciones = () => {
                                         <option value="" disabled selected>Selecciona un cliente</option>
                                         {idClientes && idClientes.map((cliente, index) => (
                                             <option key={index} value={cliente.id_cliente}>
-                                                {cliente.id_cliente}
+                                                {`${cliente.documento} - ${cliente.nombres}`}
                                             </option>
                                         ))}
                                     </select>
@@ -397,7 +403,7 @@ const GestionReparaciones = () => {
                                         <option value='' disabled selected>Seleccione el tipo de vehículo</option>
                                         {cargarTipoV && cargarTipoV.map((tipo, index) => (
                                             <option key={index} value={tipo.id_tipo_vehiculo}>
-                                                {tipo.id_tipo_vehiculo}
+                                                {`${tipo.marca} - ${tipo.modelo}`}
                                             </option>
                                         ))}
                                     </select>
@@ -409,7 +415,7 @@ const GestionReparaciones = () => {
                                         <option value="" disabled selected>Selecciona su id de empleado</option>
                                         {cargarEmpleado && cargarEmpleado.map((empleado, index) => (
                                             <option key={index} value={empleado.id_empleado}>
-                                                {empleado.id_empleado}
+                                                {`${empleado.documento} - ${empleado.nombres}`}
                                             </option>
                                         ))}
                                     </select>

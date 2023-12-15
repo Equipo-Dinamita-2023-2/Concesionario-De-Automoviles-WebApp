@@ -10,7 +10,17 @@
       "src": "pag-react/**",
       "use": "@vercel/static-build",
       "config": { "distDir": "pag-react/build" },
-      "build": { "env": { "BUILD_SCRIPT": "./build.sh" } }
+      "builds": [
+        { "src": "pag-react/build/**", "use": "@vercel/static" },
+        {
+          "src": "pag-react/**",
+          "use": "@vercel/node",
+          "config": { "maxLambdaSize": "10mb" }
+        }
+      ],
+      "env": {
+        "BUILD_SCRIPT": "./build.sh"
+      }
     }
   ],
   "routes": [

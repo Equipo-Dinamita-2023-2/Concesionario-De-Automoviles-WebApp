@@ -4,9 +4,13 @@ import { mostrar_alerta } from "../componentes/funciones";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import '../estilos/general.css'
+import { obtenerRoles } from "../api/roles-api";
+import { obtenerSucursal } from "../api/sucursal-api";
 
 const GestionEmpleado = () => {
     const [empleados, setEmpleados] = useState([]);
+    const [cargarRol, setCargarRol] = useState([]);
+    const [cargarSucursal, setCargarSucursal] = useState(null);
     const [id, setId] = useState("");
     const [documento, setDocumento] = useState("");
     const [nombre, setNombre] = useState("");
@@ -32,6 +36,36 @@ const GestionEmpleado = () => {
             }
         }
         cargarEmpleados();
+    }, []);
+
+    useEffect(() => {
+        async function cargarRol() {
+            try {
+                const roles = await obtenerRoles();
+                const idRol = roles.map((rol) => ({
+                    id_rol: rol.id_rol
+                }));
+                setCargarRol(idRol);
+            } catch (error) {
+                console.error("Error al cargar los roles:", error);
+            }
+        }
+        cargarRol();
+    }, []);
+
+    useEffect(() => {
+        async function cargarSucursales() {
+            try {
+                const sucursales = await obtenerSucursal();
+                const idSucursal = sucursales.map((sucursal) => ({
+                    id_sucursal: sucursal.id_sucursal
+                }));
+                setCargarSucursal(idSucursal);
+            } catch (error) {
+                console.error("Error al cargar las sucursales:", error);
+            }
+        }
+        cargarSucursales();
     }, []);
 
     const abrirModal = (op, id, documento, nombres, apellidos, celular, correo, password,
@@ -74,7 +108,7 @@ const GestionEmpleado = () => {
 
     const validarCampos = async () => {
         if (
-            !documento || !nombre || !apellidos || !celular || !correo || 
+            !documento || !nombre || !apellidos || !celular || !correo ||
             !password || !direccion || !ciudad || !idRol || !idSucursal
         ) {
             mostrar_alerta('Recuerda rellenar todos los campos', 'warning');
@@ -308,14 +342,28 @@ const GestionEmpleado = () => {
 
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="fa-solid fa-users"></i></span>
-                                    <input type="number" id="rol" className="form-control" placeholder="Rol" value={idRol}
-                                        onChange={(e) => setIdRol(e.target.value)}></input>
+                                    <select className="form-control" required onChange={(e) => setIdRol(parseInt(e.target.value, 10))}>
+
+                                        <option value="" disabled selected>Selecciona el rol</option>
+                                        {cargarRol && cargarRol.map((rol, index) => (
+                                            <option key={index} value={rol.id_rol}>
+                                                {rol.id_rol}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
+
 
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="fa-solid fa-code-branch"></i></span>
-                                    <input type="number" id="nombre" className="form-control" placeholder="Sucursal" value={idSucursal}
-                                        onChange={(e) => setIdSucursal(e.target.value)}></input>
+                                    <select className="form-control" required onChange={(e) => setIdSucursal(parseInt(e.target.value, 10))}>
+                                        <option value="" disabled selected>Selecciona la sucursal</option>
+                                        {cargarSucursal && cargarSucursal.map((sucursal, index) => (
+                                            <option key={index} value={sucursal.id_sucursal}>
+                                                {sucursal.id_sucursal}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 <div className="d-grid col-6 mx-auto">

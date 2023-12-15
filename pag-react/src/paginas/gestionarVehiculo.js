@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { obtenerVehiculos, crearVehiculo, eliminarVehiculo, actualizarVehiculo } from "../api/vehiculo-api"; 
+import { obtenerVehiculos, crearVehiculo, eliminarVehiculo, actualizarVehiculo } from "../api/vehiculo-api";
 import { mostrar_alerta } from "../componentes/funciones";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import '../estilos/general.css'
+import { obtenerTipoV } from "../api/tipoV-api";
 
 const GestionVehiculo = () => {
     const [vehiculos, setVehiculos] = useState([]);
+    const [cargarTipoV, setCargarTipoV] = useState([]);
     const [placa, setPlaca] = useState("");
     const [url, setUrl] = useState("")
     const [tipo_uso, setTipo_uso] = useState("");
@@ -27,6 +29,21 @@ const GestionVehiculo = () => {
         cargarVehiculos();
     }, []);
 
+    useEffect(() => {
+        async function cargarTipo() {
+            try {
+                const tipoV = await obtenerTipoV();
+                const id = tipoV.map((tipo) => ({
+                    id_tipo_vehiculo: tipo.id_tipo_vehiculo
+                }));
+                setCargarTipoV(id);
+            } catch (error) {
+                console.error("Error al cargar id tipo vehiculo:", error);
+            }
+        }
+        cargarTipo();
+    }, []);
+
     const abrirModal = (op, placa, tipo_uso, url, idTipoV) => {
         setIdTipoV('');
         setPlaca('');
@@ -42,7 +59,7 @@ const GestionVehiculo = () => {
             setPlaca(placa);
             setTipo_uso(tipo_uso);
             setUrl(url);
-            
+
         }
 
     }
@@ -112,7 +129,7 @@ const GestionVehiculo = () => {
             <div className="App">
                 <div className="container-fluid">
                     <div className="row">
-                        
+
                         {/* Contenido principal */}
                         <div className="col-md-9">
                             <div className="row mt-3 align-items-center">
@@ -200,22 +217,26 @@ const GestionVehiculo = () => {
                             </div>
                             <div className="modal-body">
 
-                                    <div className="input-group mb-3">
-                                        <span className="input-group-text"><i className="fa-solid fa-arrow-up-1-9"></i></span>
-                                        <input
-                                            type="text"
-                                            id="placa"
-                                            className="form-control"
-                                            value={placa}
-                                            placeholder="Placa"
-                                            onChange={(e) => setPlaca(e.target.value)}
-                                        />
-                                    </div>
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text"><i className="fa-solid fa-arrow-up-1-9"></i></span>
+                                    <input
+                                        type="text"
+                                        id="placa"
+                                        className="form-control"
+                                        value={placa}
+                                        placeholder="Placa"
+                                        onChange={(e) => setPlaca(e.target.value)}
+                                    />
+                                </div>
 
                                 <div className="input-group mb-3">
-                                    <span className="input-group-text"><i className="fa-solid fa-car-rear"></i></span>
-                                    <input type="text" id="tipo-uso" className="form-control" placeholder="Tipo uso" value={tipo_uso}
-                                        onChange={(e) => setTipo_uso(e.target.value)}></input>
+                                    <span className="input-group-text"><i className="fa-solid fa-circle-question"></i></span>
+                                    <select className="form-control" required onChange={(e) => setTipo_uso(toString(e.target.value))}>
+                                        <option value="" disabled selected>Selecciona el uso</option>
+                                        <option value="Nuevo">Nuevo</option>
+                                        <option value="Usado">Usado</option>
+                                        <option value="Reparación">Reparación</option>
+                                    </select>
                                 </div>
 
                                 <div className="input-group mb-3">
@@ -225,9 +246,15 @@ const GestionVehiculo = () => {
                                 </div>
 
                                 <div className="input-group mb-3">
-                                    <span className="input-group-text"><i className="fa-solid fa-truck-ramp-box"></i></span>
-                                    <input type="number" id="idTipoV" className="form-control" placeholder="Tipo vehiculo" value={idTipoV}
-                                        onChange={(e) => setIdTipoV(e.target.value)}></input>
+                                    <span className="input-group-text"><i className="fa-solid fa-car-side"></i></span>
+                                    <select className="form-control" required onChange={(e) => setIdTipoV(parseInt(e.target.value, 10))}>
+                                        <option value="" disabled selected>Seleccione el tipo de vehículo</option>
+                                        {cargarTipoV && cargarTipoV.map((tipo, index) => (
+                                            <option key={index} value={tipo.id_tipo_vehiculo}>
+                                                {tipo.id_tipo_vehiculo}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 <div className="d-grid col-6 mx-auto">
@@ -235,7 +262,7 @@ const GestionVehiculo = () => {
                                         <i className="fa-solid fa-floppy-disk"></i> Guardar
                                     </button>
                                 </div>
-                                
+
                             </div>
                             <div className="modal-footer">
                                 <button id='btnCerrar' type="button" className="btn btn-secondary" data-bs-dismiss='modal'>Cerrar</button>

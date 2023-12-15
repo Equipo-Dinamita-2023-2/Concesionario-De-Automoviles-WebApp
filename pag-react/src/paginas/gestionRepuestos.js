@@ -3,10 +3,12 @@ import { obtenerRepuesto, crearRepuesto, actualizarRepuesto, eliminarRepuesto } 
 import { mostrar_alerta } from "../componentes/funciones";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-import '../estilos/general.css'
+import '../estilos/general.css';
+import { obtenerTipoV } from "../api/tipoV-api";
 
 const GestionRepuesto = () => {
     const [repuestos, setRepuestos] = useState([]);
+    const [cargarTipoV, setCargarTipoV] = useState([]);
     const [id, setId] = useState("");
     const [nombre, setNombre] = useState("");
     const [stock, setStock] = useState("");
@@ -28,6 +30,21 @@ const GestionRepuesto = () => {
             }
         }
         cargarRepuestos();
+    }, []);
+
+    useEffect(() => {
+        async function cargarTipo() {
+            try {
+                const tipoV = await obtenerTipoV();
+                const id = tipoV.map((tipo) => ({
+                    id_tipo_vehiculo: tipo.id_tipo_vehiculo
+                }));
+                setCargarTipoV(id);
+            } catch (error) {
+                console.error("Error al cargar id tipo vehiculo:", error);
+            }
+        }
+        cargarTipo();
     }, []);
 
     const abrirModal = (op, id, nombre, stock, precio, url, descripcion, idTipoV) => {
@@ -263,10 +280,17 @@ const GestionRepuesto = () => {
                                         onChange={(e) => setDescripcion(e.target.value)}></input>
                                 </div>
 
+                                
                                 <div className="input-group mb-3">
-                                    <span className="input-group-text"><i className="fa-solid fa-car"></i></span>
-                                    <input type="number" id="idTipoV" className="form-control" placeholder="Id tipo vehiculo" value={idTipoV}
-                                        onChange={(e) => setIdTipoV(e.target.value)}></input>
+                                    <span className="input-group-text"><i className="fa-solid fa-car-side"></i></span>
+                                    <select className="form-control" required onChange={(e) => setIdTipoV(parseInt(e.target.value, 10))}>
+                                        <option value="" disabled selected>Seleccione el tipo de vehículo</option>
+                                        {cargarTipoV && cargarTipoV.map((tipo, index) => (
+                                            <option key={index} value={tipo.id_tipo_vehiculo}>
+                                                {tipo.id_tipo_vehiculo}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 <div className="d-grid col-6 mx-auto">

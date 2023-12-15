@@ -27,7 +27,7 @@ class Cliente(models.Model):
     ciudad = models.CharField(max_length=20)
 
     def __str__(self):
-        return f"{self.nombres} {self.apellidos}"
+        return f"{self.id_cliente} {self.nombres}"
 
 
 class RolEmpleado(models.Model):
@@ -53,7 +53,7 @@ class Empleado(models.Model):
     id_sucursal = models.ForeignKey(Sucursal, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.nombres} {self.apellidos}"
+        return f"{self.id_empleado} {self.nombres}"
 
 
 class TipoVehiculo(models.Model):

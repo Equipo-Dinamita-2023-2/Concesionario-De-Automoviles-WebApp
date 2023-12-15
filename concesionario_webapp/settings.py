@@ -162,5 +162,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Autorizaciones de cors
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://localhost:8000",
                         "https://concesionario-webapp.onrender.com", "postgres://concesionario_user:kJcN8G9AhbHIIpSOBiASDcPXfz09bU06@dpg-clabjo9arfss73dcedrg-a.oregon-postgres.render.com"]
+CORS_ALLOW_ALL_ORIGINS = True

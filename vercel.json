@@ -7,7 +7,7 @@
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     },
     {
-      "src": "pag-react/**",
+      "src": "pag-react/build/index.html",
       "use": "@vercel/static-build"
     }
   ],

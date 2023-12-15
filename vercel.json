@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "concesionario_webapp/**",
+      "src": "concesionario_webapp/wsgi.py",
       "use": "@vercel/python"
     },
     {

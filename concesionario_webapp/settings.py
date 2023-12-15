@@ -163,4 +163,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Autorizaciones de cors
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://localhost:8000",
-                        "https://concesionario-webapp.onrender.com", "http://localhost:8000/empleado/api/v1/empleado", "http://localhost:8000/cliente/api/v1/cliente", "http://localhost:8000/reparacion/api/v1/reparacion", ]
+                        "https://concesionario-webapp.onrender.com", "postgres://concesionario_user:kJcN8G9AhbHIIpSOBiASDcPXfz09bU06@dpg-clabjo9arfss73dcedrg-a.oregon-postgres.render.com"]

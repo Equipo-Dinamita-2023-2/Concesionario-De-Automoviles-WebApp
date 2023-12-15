@@ -16,6 +16,7 @@ import Cotizar from './paginas/cotizar';
 import Progreso from './paginas/progreso';
 import Gerente from './paginas/vistaGerente'
 import Tallerista from './paginas/vistaTallerista';
+import Cliente from './paginas/cliente';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='/progreso' element={<Progreso/>}></Route>
         <Route path='/gerente' element={<Gerente/>}></Route>
         <Route path='/tallerista' element={<Tallerista/>}></Route>
+        <Route path='/cliente' element={<Cliente/>}></Route>
       </Routes>
     </Router>
   );

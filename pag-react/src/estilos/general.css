@@ -11,6 +11,16 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
+.App {
+    margin-top: 15px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
 
 
 /*

@@ -89,8 +89,6 @@ function Cotizar() {
             !diasVigentes || !tipoVehiculo || !tipoVehiculo || !precioCotizacion || !idEmpleado){
                 mostrar_alerta('Recuerda rellenar todos los campos', 'warning')
             }
-
-            console.log('va por aqui');
         // Crear la cotización
         const cotizacion = {
             id_cliente:idCliente,
@@ -101,8 +99,6 @@ function Cotizar() {
             precio_cotizado:precioCotizacion,
             id_empleado:idEmpleado,
         };
-
-        console.log('por acá');
     
         try {
             await crearCotizacion(cotizacion);
@@ -111,8 +107,6 @@ function Cotizar() {
             mostrar_alerta('Cotización NO ingresada', 'warning');;
             console.error("Error al enviar la cotización:", error);
         }
-
-        console.log('finalmente aca');
     };
     
     

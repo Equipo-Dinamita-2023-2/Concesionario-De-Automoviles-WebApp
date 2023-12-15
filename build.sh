@@ -17,6 +17,9 @@ cd ..
 
 # Mover los archivos estáticos a la carpeta de Django
 echo "Moviendo archivos estáticos a la carpeta de Django..."
+echo "Eliminar versiones antiguas..."
 rm -rf "$DJANGO_APP_DIR/static"  # Eliminar versiones antiguas
+echo "Creando directorio..."
 mkdir -p "$DJANGO_APP_DIR/static"
+echo "Copiando archivos..."
 cp -r "$REACT_APP_DIR/build"/* "$DJANGO_APP_DIR/static/"

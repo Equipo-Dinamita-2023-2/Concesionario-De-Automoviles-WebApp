@@ -1,33 +1,83 @@
-// BarraLateral.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaUserCircle } from "react-icons/fa";
 
-const BarraLateral = ({ mostrarContenido }) => {
+const BarraLateral = ({ mostrarContenido, modo }) => {
+  const navigate = useNavigate();
+
+  const cerrarSesion = () => {
+    navigate('/');
+  };
+
   return (
     <div className='sidebar'>
       <div className='perfil'>
-        {/* Aquí puedes agregar el icono y el nombre de usuario */}
         <div className='perfil-info'>
-          
-          <span>Nombre de Usuario</span>
+          <FaUserCircle className='foto-user' />
+          <span>{modo === 'gerente' ? 'Gerente' : 'Tallerista'}</span>
         </div>
       </div>
       <ul>
-        <li>
-          <button className='boton-barra' onClick={() => mostrarContenido('empleado')}>Gestión empleados</button>
-        </li>
-        <li>
-          <button className='boton-barra' onClick={() => mostrarContenido('sucursal')}>Gestión sucursal</button>
-        </li>
-        <li>
-          <button className='boton-barra' onClick={() => mostrarContenido('vehiculos')}>Gestión vehiculos</button>
-        </li>
-        <li>
-          <button className='boton-barra' onClick={() => mostrarContenido('repuestos')}>Gestión repuestos</button>
-        </li>
+        {modo === 'gerente' ? (
+          <>
+            <li>
+              <button
+                className='boton-barra'
+                onClick={() => mostrarContenido('empleado')}
+              >
+                Gestionar Empleados
+              </button>
+            </li>
+            <li>
+              <button
+                className='boton-barra'
+                onClick={() => mostrarContenido('sucursal')}
+              >
+                Gestionar Sucursales
+              </button>
+            </li>
+            <li>
+              <button
+                className='boton-barra'
+                onClick={() => mostrarContenido('vehiculos')}
+              >
+                Gestionar Vehículos
+              </button>
+            </li>
+            <li>
+              <button
+                className='boton-barra'
+                onClick={() => mostrarContenido('repuestos')}
+              >
+                Gestionar Repuestos
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <button
+                className='boton-barra'
+                onClick={() => mostrarContenido('cliente')}
+              >
+                Gestionar Clientes
+              </button>
+            </li>
+            <li>
+              <button
+                className='boton-barra'
+                onClick={() => mostrarContenido('reparaciones')}
+              >
+                Gestionar Reparaciones
+              </button>
+            </li>
+          </>
+        )}
       </ul>
       <div className='cerrar-sesion'>
-        {/* Aquí puedes agregar el botón de cerrar sesión */}
-        <button className='boton-barra'>Cerrar Sesión</button>
+        <button className='boton-barra' onClick={cerrarSesion}>
+          Cerrar Sesión
+        </button>
       </div>
     </div>
   );

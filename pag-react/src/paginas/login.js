@@ -1,6 +1,8 @@
 import '../estilos/login.css'
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { obtenerEmpleados } from '../api/empleado-api'
+import { obtenerReparaciones } from '../api/reparacion-api';
 import ReCAPTCHA from "react-google-recaptcha";
 
 function Login() {
@@ -9,23 +11,62 @@ function Login() {
     const [password, setPassword] = useState('');
     const captcha = useRef(null);
     const [isLoginMode, setIsLoginMode] = useState(true); // Estado para rastrear el modo actual
-
+    const [credenciales, setCredenciales] = useState([]);
+    const [codigos, setCodigos] = useState([]);
     const handleToggleMode = () => {
         setIsLoginMode((prevMode) => !prevMode);
     };
 
-    const handleAction = () => {
-        if (isLoginMode) {
-            if (username === 'empleado' && password === 'empleado' && captcha.current.getValue()) {
-                navigate('/inicio');
-            } else if (!captcha.current.getValue()) {
-                alert('Porfavor resuelta la captcha');
-            } else {
-                alert('Verifique el usuario y la contraseña');
-            }
-        } else if(username === 'cliente'){
-            navigate('/progreso')
+const handleAction = () => {
+    if (isLoginMode && captcha.current.getValue()) {
+        const empleadoValido = credenciales.some(
+            (credencial) =>
+                credencial.correo === username &&
+                credencial.contrasenha === password &&
+                credencial.id_rol === 1
+        );
+
+        const gerenteValido = credenciales.some(
+            (credencial) =>
+                credencial.correo === username &&
+                credencial.contrasenha === password &&
+                credencial.id_rol === 3
+        );
+        
+        const talleristaValido = credenciales.some(
+            (credencial) =>
+                credencial.correo === username &&
+                credencial.contrasenha === password &&
+                credencial.id_rol === 2
+        );  
+
+        if (empleadoValido) {
+            navigate('/inicio');
+        } else if (gerenteValido) {
+            navigate('/gerente');
+        } else if(talleristaValido){
+            navigate('/tallerista')
+        }else {
+            alert('Intente de nuevo.');
         }
+
+
+    }  else if (!captcha.current.getValue()) {
+        alert('Porfavor resuelva la captcha');
+    }
+    else {
+
+        const codigoClienteValido = codigos.some(
+            (codigo) =>
+                codigo.cod_cliente === username
+        );
+
+        if (codigoClienteValido) {
+            navigate('/progreso');
+        } else {
+            alert('Intente de nuevo.');
+        }
+    }
     };
 
     const onChange = () => {
@@ -34,6 +75,42 @@ function Login() {
         }
     };
 
+    useEffect(() => {
+        async function cargarEmpleado() {
+            try {
+                const empleados = await obtenerEmpleados();
+                console.log(empleados);
+                const credencialesEmpleado = empleados.map((empleado) => ({
+                    correo: empleado.correo,
+                    contrasenha: empleado.contrasenha,
+                    id_rol: empleado.id_rol
+                }));
+                setCredenciales(credencialesEmpleado);
+                console.log(credenciales);
+            } catch (error) {
+                console.error("Error al cargar empleado:", error);
+            }
+        }
+        cargarEmpleado();
+    }, [credenciales]);
+
+    useEffect(() => {
+        async function cargarCodigo() {
+            try {
+                const reparacion = await obtenerReparaciones();
+                console.log(reparacion);
+                const codigoCliente = reparacion.map((cliente) => ({
+                    cod_cliente: cliente.cod_cliente
+                }));
+                setCodigos(codigoCliente);
+                console.log(codigos);
+            } catch (error) {
+                console.error("Error al cargar cliente:", error);
+            }
+        }
+        cargarCodigo();
+    }, [codigos]);
+    
     return (
         <section className='section-login'>
             <div className="contenedor-login">
@@ -90,4 +167,5 @@ function Login() {
         </section>
     );
 }
+
 export default Login;

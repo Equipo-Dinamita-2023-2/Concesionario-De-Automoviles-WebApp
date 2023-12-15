@@ -6,6 +6,7 @@
     border-right: 1px solid gray;
     flex-direction: column;
     align-items: center;
+    display: flex;
 
     ul{
         list-style: none;
@@ -13,15 +14,17 @@
         height: calc(90% - 60px);
         overflow-y: auto;
         display: flex;
-        flex-direction: column; /* Alinea los elementos en columna */
-        align-items: center; /* Alinea los elementos en el centro horizontalmente */
+        flex-direction: column; 
+        align-items: center; 
+        flex: 1;
+        justify-content: center;
         li{
             margin-bottom: 1rem;
-            width: 100%; /* Ocupa el 100% del ancho disponible */
+            width: 100%; 
         }
         a{
             text-decoration: none;
-            width: 100%; /* Ocupa el 100% del ancho disponible */
+            width: 100%; 
         }
     }
 }
@@ -44,6 +47,7 @@
     width: 100%;
     display: block;
     margin-bottom: 5px;
+    border: none;
 }
 
 .perfil {
@@ -52,16 +56,23 @@
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    height: 25%;
 }
 
 .perfil-info {
     display: flex;
+    flex-direction: column;
     align-items: center;
-  }
+}
 
-  .cerrar-sesion {
+.cerrar-sesion {
     padding: 10px;
     border-top: 1px solid #ccc;
-    margin-top: auto; /* Empuja el elemento hacia abajo para ocupar el espacio restante */
-        width: 100%; /* Ocupa el 100% del ancho disponible */
-  }
+    margin-top: auto;
+    width: 100%; 
+    text-align: center;
+}
+
+.foto-user{
+    font-size: 100px;
+}

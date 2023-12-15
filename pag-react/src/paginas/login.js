@@ -1,9 +1,9 @@
 import '../estilos/login.css'
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReCAPTCHA from "react-google-recaptcha";
 import { obtenerEmpleados } from '../api/empleado-api'
 import { obtenerReparaciones } from '../api/reparacion-api';
+import ReCAPTCHA from "react-google-recaptcha";
 import { useUsername } from '../componentes/username';
 
 function Login() {
@@ -20,7 +20,7 @@ function Login() {
     };
 
 const handleAction = () => {
-    if (isLoginMode) {
+    if (isLoginMode && captcha.current.getValue()) {
         const empleadoValido = credenciales.some(
             (credencial) =>
                 credencial.correo === username &&
@@ -53,7 +53,10 @@ const handleAction = () => {
         }
 
 
-    } else {
+    }  else if (!captcha.current.getValue()) {
+        alert('Porfavor resuelva la captcha');
+    }
+    else {
 
         const codigoClienteValido = codigos.some(
             (codigo) =>
@@ -67,6 +70,12 @@ const handleAction = () => {
             alert('Intente de nuevo.');
         }
     }
+    };
+
+    const onChange = () => {
+        if (captcha.current.getValue()) {
+            console.log('Captcha validada');
+        }
     };
 
     useEffect(() => {

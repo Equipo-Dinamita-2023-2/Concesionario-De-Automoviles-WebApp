@@ -9,10 +9,7 @@
     {
       "src": "pag-react/**",
       "use": "@vercel/static-build",
-      "config": { "distDir": "pag-react/build" },
-      "env": {
-        "BUILD_SCRIPT": "./build.sh"
-      }
+      "config": { "distDir": "pag-react/build" }
     }
   ],
   "routes": [

@@ -2,6 +2,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Inicio from './paginas/inicio';
 import Productos from './paginas/productos';
 import Reparar from './paginas/reparar';
+import './estilos/general.css';
 //import Cotizacion from './paginas/cotizacion2';
 import './estilos/general.css'
 import PagoEnvio from './paginas/pagos-envios';

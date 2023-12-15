@@ -5,23 +5,41 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { TbUserCheck } from "react-icons/tb";
 import { MdOutlineDone } from "react-icons/md";
 import '../estilos/progreso.css';
+import { obtenerReparaciones } from '../api/reparacion-api';
 
 function Progreso() {
     const [etapa, setEtapa] = useState(1);
-    const estadoReparacion = 'en_progreso';
+    const [estadoReparacion, setEstadoReparacion] = useState([]);
+
+    useEffect(() => {
+        async function cargarReparaciones() {
+            try {
+                const res = await obtenerReparaciones();
+                const estado = res.map((estado) =>({
+                    estado_reparacion: estado.estado_reparacion
+                }))
+
+                console.log(estado)
+                setEstadoReparacion(estado);
+            } catch (error) {
+                console.error("Error al cargar el estado de reparación:", error);
+            }
+        }
+        cargarReparaciones();
+    }, []);
     
     useEffect(() => {
         switch (estadoReparacion) {
-            case 'en_proceso':
+            case 'En proceso':
                 setEtapa(1);
                 break;
-            case 'pruebas':
+            case 'Pruebas':
                 setEtapa(2);
                 break;
-            case 'finalizado':
+            case 'Finalizado':
                 setEtapa(3);
                 break;
-            case 'entregado':
+            case 'Entregado':
                 setEtapa(4);
                 break;
             default:

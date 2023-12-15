@@ -15,6 +15,7 @@ const GestionReparaciones = () => {
     const [cargarPlaca, setCargarPlaca] = useState(null);
     const [cargarEmpleado, setCargarEmpleado] = useState(null);
     const [cargarTipoV, setCargarTipoV] = useState(null);
+    const [codigosCliente, setCodigosClientes] = useState(null);
     const [id, setId] = useState("");
     const [documentoClientes, setDocumentoCliente] = useState("");
     const [codigo, setCodigo] = useState("");
@@ -37,7 +38,10 @@ const GestionReparaciones = () => {
             try {
                 const res = await obtenerReparaciones();
                 setReparaciones(res);
-                console.log(res);
+                const codigos = res.map((codigo) =>({
+                    cod_cliente: codigo.cod_cliente
+                }))
+                setCodigosClientes(codigos);
             } catch (error) {
                 console.error("Error al cargar la orden de reparación:", error);
             }
@@ -111,7 +115,7 @@ const GestionReparaciones = () => {
         lista, costoRepuestos, costoTrabajo, costoTotal, estadoPago, estadoReparacion, descripcionTrabajo) => {
         setId('');
         setDocumentoCliente('');
-        setCodigo('');
+        setCodigo(generarCodigo(codigosCliente));
         setPlaca('');
         setFecha('');
         setTipoV('');
@@ -365,7 +369,7 @@ const GestionReparaciones = () => {
 
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="fa-solid fa-key"></i></span>
-                                    <input type="text" id="codCliente" className="form-control" placeholder="Codigo cliente" value={codigo}
+                                    <input type="text" id="codCliente" className="form-control" placeholder="Codigo cliente" value={codigo} disabled
                                         onChange={(e) => setCodigo(e.target.value)}></input>
                                 </div>
 
@@ -479,6 +483,20 @@ const GestionReparaciones = () => {
     );
 };
 
+function generarCodigo(lista) {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let codigo;
+
+    do {
+        codigo = '';
+        for (let i = 0; i < 10; i++) {
+            const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
+            codigo += caracteres.charAt(indiceAleatorio);
+        }
+    }  while (lista && lista.map(rep => rep.codigo).includes(codigo));
+
+    return codigo;
+}
 
 
 export default GestionReparaciones;

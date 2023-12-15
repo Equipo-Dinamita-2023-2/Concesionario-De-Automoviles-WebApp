@@ -1,29 +1,16 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "concesionario_webapp/wsgi.py",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "concesionario_webapp" }
-    },
-    {
-      "src": "pag-react/**",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "pag-react/build" }
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     }
   ],
+
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/concesionario_webapp/$1"
-    },
-    {
-      "src": "/pag-react/(.*)",
-      "dest": "/pag-react/$1"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/concesionario_webapp/static/$1"
+      "dest": "concesionario_webapp/wsgi.py"
     }
   ]
 }

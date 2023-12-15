@@ -8,8 +8,7 @@
     },
     {
       "src": "pag-react/**",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "pag-react/build" }
+      "use": "@vercel/static-build"
     }
   ],
 

@@ -11,7 +11,6 @@ DJANGO_APP_DIR="concesionario_webapp"
 # Construir la aplicación React
 echo "Construyendo la aplicación React..."
 cd "$REACT_APP_DIR" || exit
-npm install   # Instalar las dependencias (si es necesario)
 npm run build  # Construir la aplicación
 cd ..
 

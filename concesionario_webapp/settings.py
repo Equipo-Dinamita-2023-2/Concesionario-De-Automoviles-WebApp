@@ -162,4 +162,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Autorizaciones de cors
-CORS_ALLOWED_ORIGINS = []
+CORS_ALLOWED_ORIGINS = ['127.0.0.1', '.vercel.app',
+                        'localhost', '.netlify.app', '.onrender.com']

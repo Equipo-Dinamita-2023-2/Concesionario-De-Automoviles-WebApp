@@ -34,7 +34,7 @@ const GestionSucursal = () => {
         setBusqueda(event.target.value);
     };
 
-    const sucursalesFiltradas = sucursal.filter((sucursal) =>
+    const sucursalesFiltradas = sucursal && sucursal.filter((sucursal) =>
         `${sucursal.ciudad} ${sucursal.id_sucursal} ${sucursal.correo}`.toLowerCase().includes(busqueda.toLowerCase())
     );
 

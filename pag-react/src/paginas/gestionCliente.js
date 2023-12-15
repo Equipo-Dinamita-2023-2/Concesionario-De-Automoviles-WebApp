@@ -23,7 +23,7 @@ const GestionCliente = () => {
         setBusqueda(event.target.value);
     };
 
-    const clientesFiltrados = cliente.filter((cliente) =>
+    const clientesFiltrados = cliente && cliente.filter((cliente) =>
         `${cliente.documento} ${cliente.nombres} ${cliente.apellidos} ${cliente.ciudad}`.toLowerCase().includes(busqueda.toLowerCase())
     );
 

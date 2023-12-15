@@ -7,9 +7,10 @@ import { MdOutlineDone } from "react-icons/md";
 import '../estilos/progreso.css';
 import { obtenerReparaciones } from '../api/reparacion-api';
 import { useUsername } from '../componentes/username';
+import Footer from '../componentes/footer.js';
 
 
-function Progreso() {
+function ProgresoCodigo() {
     const { username } = useUsername();
     const [etapa, setEtapa] = useState(1);
     const [estadoReparacion, setEstadoReparacion] = useState('');
@@ -98,6 +99,16 @@ function Progreso() {
     </div>
     </>
   );
+}
+
+function Progreso(){
+    return(
+        <>
+        <h1 className='titulos'>Estado de reparación</h1>
+        <ProgresoCodigo/>
+        <Footer/>
+        </>
+    )
 }
 
 export default Progreso;

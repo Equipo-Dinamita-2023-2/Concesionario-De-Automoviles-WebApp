@@ -54,7 +54,7 @@ const GestionReparaciones = () => {
         setBusqueda(event.target.value);
     };
 
-    const reparacionesFiltradas = reparaciones.filter((reparacion) =>
+    const reparacionesFiltradas = reparaciones && reparaciones.filter((reparacion) =>
         `${reparacion.placa} ${reparacion.id_cliente} ${reparacion.cod_cliente} ${reparacion.estado_pago} ${reparacion.estado_reparacion} ${reparacion.id_empleado}`.toLowerCase().includes(busqueda.toLowerCase())
     );
 

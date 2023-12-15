@@ -43,7 +43,7 @@ const GestionEmpleado = () => {
         setBusqueda(event.target.value);
     };
 
-    const empleadosFiltradas = empleados.filter((empleado) =>
+    const empleadosFiltradas =empleados && empleados.filter((empleado) =>
         `${empleado.documento} ${empleado.nombres} ${empleado.apellidos} ${empleado.id_rol} ${empleado.id_sucursal}`.toLowerCase().includes(busqueda.toLowerCase())
     );
 

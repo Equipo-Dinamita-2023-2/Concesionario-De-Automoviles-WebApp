@@ -22,7 +22,7 @@ const GestionVehiculo = () => {
         setBusqueda(event.target.value);
     };
 
-    const vehiculosFiltrados = vehiculos.filter((vehiculo) =>
+    const vehiculosFiltrados = vehiculos && vehiculos.filter((vehiculo) =>
         `${vehiculo.marca} ${vehiculo.modelo} ${vehiculo.anho} ${vehiculo.marca} ${vehiculo.color}`.toLowerCase().includes(busqueda.toLowerCase())
     );
 

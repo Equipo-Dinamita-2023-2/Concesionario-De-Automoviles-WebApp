@@ -37,7 +37,7 @@ const GestionRepuesto = () => {
         setBusqueda(event.target.value);
     };
 
-    const repuestosFiltrados = repuestos.filter((repuesto) =>
+    const repuestosFiltrados = repuestos && repuestos.filter((repuesto) =>
         `${repuesto.nombre_repuesto} ${repuesto.precio} ${repuesto.id_tipo_vehiculo}`.toLowerCase().includes(busqueda.toLowerCase())
     );
 

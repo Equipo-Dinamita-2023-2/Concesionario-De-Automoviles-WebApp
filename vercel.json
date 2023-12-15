@@ -2,8 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "concesionario_webapp/**",
-      "use": "@vercel/static-build",
+      "src": "concesionario_webapp/wsgi.py",
+      "use": "@vercel/python",
       "config": { "distDir": "concesionario_webapp" }
     },
     {
@@ -12,18 +12,11 @@
       "config": { "distDir": "pag-react/build" }
     }
   ],
+
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/concesionario_webapp/$1"
-    },
-    {
-      "src": "/pag-react/(.*)",
-      "dest": "/pag-react/$1"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/concesionario_webapp/static/$1"
+      "dest": "concesionario_webapp/wsgi.py"
     }
   ]
 }

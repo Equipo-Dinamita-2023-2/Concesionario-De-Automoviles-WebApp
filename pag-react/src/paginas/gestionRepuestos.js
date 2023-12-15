@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { obtenerRepuesto, crearRepuesto, actualizarRepuesto, eliminarRepuesto } from "../api/repuesto-api"; 
+import { obtenerRepuesto, crearRepuesto, actualizarRepuesto, eliminarRepuesto } from "../api/repuesto-api";
 import { mostrar_alerta } from "../componentes/funciones";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
@@ -65,12 +65,12 @@ const GestionRepuesto = () => {
             setTitle('Editar repuesto');
             setId(id);
             setNombre(nombre);
-        setStock(stock);
-        setPrecio(precio);
-        setUrl(url);
-        setDescripcion(descripcion);
-        setIdTipoV(idTipoV);
-            
+            setStock(stock);
+            setPrecio(precio);
+            setUrl(url);
+            setDescripcion(descripcion);
+            setIdTipoV(idTipoV);
+
         }
         window.setTimeout(function () {
             document.getElementById('nombre').focus();
@@ -144,41 +144,40 @@ const GestionRepuesto = () => {
     return (
         <>
             <div className="App">
+                <h1>Gestion de repuestos</h1>
                 <div className="container-fluid">
                     <div className="row">
+
                         {/* Contenido principal */}
-                        <div className="col-md-9">
-                            <div className="row mt-3 align-items-center">
-                                <div className="col-6 text-end">
-                                    <div className="input-group">
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Buscar..."
-                                        />
-                                        <button className="btn btn-primary" type="button">
-                                            Buscar
-                                        </button>
+                        <div className="col-md-20">
+                            <div className="formularios-gestion d-flex flex-row align-items-center" >
+                                <div className="row mt-5 me-1 align-items-center">
+                                    <div className="col-20 text-end">
+                                        <div className="input-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Buscar..."
+                                            />
+                                            <button className="btn btn-primary" type="button">
+                                                Buscar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-5">
-                                    <select className="form-select me-2">
-                                        <option value="todos">Todos</option>
-                                        <option value="activo">Activo</option>
-                                        <option value="inactivo">Inactivo</option>
-                                    </select>
-                                    {/* Botón de añadir */}
-                                    <button
-                                        className="btn btn-dark"
-                                        onClick={() => abrirModal(1)}
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalRepuesto"
-                                        style={{ maxWidth: '150px' }}
-                                    >
-                                        <i className="fa-solid fa-circle-plus"></i> Añadir
-                                    </button>
+                                <div className="row mt-5">
+                                    <div className="col-40">
+                                        {/* Botón de añadir */}
+                                        <button
+                                            className="btn btn-dark"
+                                            onClick={() => abrirModal(1)}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalRepuesto"
+                                            style={{ maxWidth: '150px' }}
+                                        >
+                                            <i className="fa-solid fa-circle-plus"></i> Añadir
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row mt-3">
@@ -207,7 +206,7 @@ const GestionRepuesto = () => {
                                                             <td>{repuesto.descripcion}</td>
                                                             <td>{repuesto.id_tipo_vehiculo}</td>
                                                             <td>
-                                                                <button onClick={() => abrirModal(2, repuesto.id_tipo_vehiculo, repuesto.nombre_repuesto, repuesto.stock, repuesto.precio,repuesto.url, repuesto.descripcion, repuesto.id_tipo_vehiculo)}
+                                                                <button onClick={() => abrirModal(2, repuesto.id_tipo_vehiculo, repuesto.nombre_repuesto, repuesto.stock, repuesto.precio, repuesto.url, repuesto.descripcion, repuesto.id_tipo_vehiculo)}
                                                                     className="btn btn-warning" data-bs-toggle='modal' data-bs-target="#modalRepuesto">
                                                                     <i className="fa-solid fa-edit"></i>
                                                                 </button>
@@ -274,15 +273,15 @@ const GestionRepuesto = () => {
                                     <input type="text" id="url" className="form-control" placeholder="Url" value={url}
                                         onChange={(e) => setUrl(e.target.value)}></input>
                                 </div>
-                                
-                                
+
+
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="fa-solid fa-info"></i></span>
                                     <input type="text" id="descripcion" className="form-control" placeholder="Descripcion" value={descripcion}
                                         onChange={(e) => setDescripcion(e.target.value)}></input>
                                 </div>
 
-                                
+
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="fa-solid fa-car-side"></i></span>
                                     <select className="form-control" required onChange={(e) => setIdTipoV(parseInt(e.target.value, 10))}>

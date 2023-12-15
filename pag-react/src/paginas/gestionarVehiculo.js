@@ -39,7 +39,7 @@ const GestionVehiculo = () => {
                     marca: tipo.marca
                 }));
                 setCargarTipoV(id);
-                
+
             } catch (error) {
                 console.error("Error al cargar id tipo vehiculo:", error);
             }
@@ -130,45 +130,43 @@ const GestionVehiculo = () => {
     return (
         <>
             <div className="App">
+                <h1>Gestion de vehiculos</h1>
                 <div className="container-fluid">
                     <div className="row">
 
                         {/* Contenido principal */}
-                        <div className="col-md-9">
-                            <div className="row mt-3 align-items-center">
-                                <div className="col-6 text-end">
-                                    <div className="input-group">
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Buscar..."
-                                        />
-                                        <button className="btn btn-primary" type="button">
-                                            Buscar
+                        <div className="col-md-20">
+                            <div className="formularios-gestion d-flex flex-row align-items-center" >
+                                <div className="row mt-5 me-1 align-items-center">
+                                    <div className="col-20 text-end">
+                                        <div className="input-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Buscar..."
+                                            />
+                                            <button className="btn btn-primary" type="button">
+                                                Buscar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row mt-5">
+                                    <div className="col-40">
+                                        {/* Botón de añadir */}
+                                        <button
+                                            className="btn btn-dark"
+                                            onClick={() => abrirModal(1)}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalVehiculos"
+                                            style={{ maxWidth: '150px' }}
+                                        >
+                                            <i className="fa-solid fa-circle-plus"></i> Añadir
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <div className="row mt-3">
-                                <div className="col-5">
-                                    <select className="form-select me-2">
-                                        <option value="todos">Todos</option>
-                                        <option value="activo">Activo</option>
-                                        <option value="inactivo">Inactivo</option>
-                                    </select>
-                                    {/* Botón de añadir */}
-                                    <button
-                                        className="btn btn-dark"
-                                        onClick={() => abrirModal(1)}
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalVehiculos"
-                                        style={{ maxWidth: '150px' }}
-                                    >
-                                        <i className="fa-solid fa-circle-plus"></i> Añadir
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="row mt-3">
+                            <div className="row mt-3 me-3">
                                 <div className="col-12">
                                     <div className="table-responsive">
                                         {/* Estructura modificada para permitir más espacio horizontal */}

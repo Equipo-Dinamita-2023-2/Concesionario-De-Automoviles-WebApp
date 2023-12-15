@@ -5,3 +5,4 @@ export const obtenerTipoV = async () => {
         return response.data;
 };
 
+

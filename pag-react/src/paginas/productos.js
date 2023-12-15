@@ -5,23 +5,13 @@ import '../estilos/productos.css';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import carro from '../imagenes/carroazul.jpg';
 import { obtenerTipoV } from '../api/tipoV-api';
-
-function Imagen() {
-  return (
-    <div className="contenedor-con-imagen">
-      <div className="formulario-busqueda">
-        <input type="text" id="busqueda" placeholder="Buscar..." />
-        <button id="boton-buscar">Buscar</button>
-      </div>
-    </div>
-  );
-}
+import { obtenerVehiculos } from '../api/vehiculo-api';
 
 function Opciones() {
   return <div className="container">{/* Aquí puedes colocar opciones adicionales si es necesario */}</div>;
 }
 
-function Carta({ producto }) {
+function Carta({ producto}) {
   return (
     <>
       <div className="product-image">
@@ -43,9 +33,9 @@ function CrearProductos({ productos }) {
       <Carta producto={producto} />
     </div>
   );
-
   return <div className="repetirCodigo">{productos.map(renderizarElemento)}</div>;
 }
+
 
 function Boton() {
   return (
@@ -59,28 +49,59 @@ function Boton() {
 
 function Productos() {
   const [listaDeProductos, setListaDeProductos] = useState([]);
+  const [busqueda, setBusqueda] = useState('');
+  const [url, setUrl] = useState([]);
 
   useEffect(() => {
-    async function cargarProductos() {
+    async function cargarDatos() {
       try {
+        // Cargar URLs
+        const vehiculos = await obtenerVehiculos();
+        const urls = vehiculos.map((vehiculo) => ({
+          id: vehiculo.id,
+          url: vehiculo.url
+        }));
+        setUrl(urls);
+
+        // Cargar productos
         const productos = await obtenerTipoV();
-        setListaDeProductos(productos);
+        // Asociar las URLs a los productos
+        const productosConUrl = productos.map((producto) => {
+          const urlInfo = urls.find((u) => u.id === producto.id);
+          return { ...producto, url: urlInfo ? urlInfo.url : '' };
+        });
+        setListaDeProductos(productosConUrl);
+        console.log(productosConUrl);
       } catch (error) {
-        console.error('Error al cargar productos:', error);
+        console.error("Error al cargar datos:", error);
       }
     }
 
-    cargarProductos();
+    cargarDatos();
   }, []);
+
+  const handleBusquedaChange = (event) => {
+    setBusqueda(event.target.value);
+  };
+
+  const productosFiltrados = listaDeProductos.filter((producto) =>
+    `${producto.marca} ${producto.modelo}`.toLowerCase().includes(busqueda.toLowerCase())
+  );
 
   return (
     <div id="cuerpo">
       <Cabecera />
-      <Imagen />
+      <div className="contenedor-con-imagen">
+      <div className="formulario-busqueda">
+        <input type="text" id="busqueda" placeholder="Buscar..." value={busqueda}
+          onChange={handleBusquedaChange}/>
+        <button id="boton-buscar">Buscar</button>
+      </div>
+    </div>
 
       <h1 className="titulos">Productos</h1>
       <Opciones />
-      <CrearProductos productos={listaDeProductos} />
+      <CrearProductos productos={productosFiltrados} />
       <Boton />
       <Footer />
     </div>

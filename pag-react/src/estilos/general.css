@@ -19,7 +19,11 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-  }
+}
+
+.contenedor-cliente{
+    margin:170px ;
+}
 
 
 

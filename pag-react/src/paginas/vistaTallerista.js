@@ -1,6 +1,6 @@
 import BarraLateral from '../componentes/barraLateral';
 import '../estilos/gerente.css'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import GestionCliente from './gestionCliente';
 import GestionReparaciones from './gestionReparaciones';
 
@@ -16,9 +16,13 @@ const Tallerista = () => {
                 setContenido(<GestionReparaciones />);
                 break;
             default:
-                setContenido(null);
+                setContenido(<GestionReparaciones/>);
         }
     };
+
+    useEffect(() => {
+        mostrarContenido('reparaciones');
+    }, []);
     return (
         <div className='gerente'>
             <div className='contenido-gerente'>

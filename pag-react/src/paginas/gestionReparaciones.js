@@ -38,7 +38,7 @@ const GestionReparaciones = () => {
             try {
                 const res = await obtenerReparaciones();
                 setReparaciones(res);
-                const codigos = res.map((codigo) =>({
+                const codigos = res.map((codigo) => ({
                     cod_cliente: codigo.cod_cliente
                 }))
                 setCodigosClientes(codigos);
@@ -240,41 +240,41 @@ const GestionReparaciones = () => {
     return (
         <>
             <div className="App">
+                <h1>Gestion de reparacion</h1>
                 <div className="container-fluid">
                     <div className="row">
+
                         {/* Contenido principal */}
-                        <div className="col-md-9">
-                            <div className="row mt-3 align-items-center">
-                                <div className="col-6 text-end">
-                                    <div className="input-group">
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Buscar..."
-                                        />
-                                        <button className="btn btn-primary" type="button">
-                                            Buscar
-                                        </button>
+                        <div className="col-md-20">
+                            <div className="formularios-gestion d-flex flex-row align-items-center" >
+                                <div className="row mt-5 me-1 align-items-center">
+                                    <div className="col-20 text-end">
+                                        <div className="input-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Buscar..."
+                                            />
+                                            <button className="btn btn-primary" type="button">
+                                                Buscar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-5">
-                                    <select className="form-select me-2">
-                                        <option value="todos">Todos</option>
-                                        <option value="activo">Activo</option>
-                                        <option value="inactivo">Inactivo</option>
-                                    </select>
-                                    {/* Botón de añadir */}
-                                    <button
-                                        className="btn btn-dark"
-                                        onClick={() => abrirModal(1)}
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalReparacion"
-                                        style={{ maxWidth: '150px' }}
-                                    >
-                                        <i className="fa-solid fa-circle-plus"></i> Añadir
-                                    </button>
+                                <div className="row mt-5">
+                                    <div className="col-40">
+
+                                        {/* Botón de añadir */}
+                                        <button
+                                            className="btn btn-dark"
+                                            onClick={() => abrirModal(1)}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalReparacion"
+                                            style={{ maxWidth: '150px' }}
+                                        >
+                                            <i className="fa-solid fa-circle-plus"></i> Añadir
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row mt-3">
@@ -499,7 +499,7 @@ function generarCodigo(lista) {
             const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
             codigo += caracteres.charAt(indiceAleatorio);
         }
-    }  while (lista && lista.map(rep => rep.codigo).includes(codigo));
+    } while (lista && lista.map(rep => rep.codigo).includes(codigo));
 
     return codigo;
 }

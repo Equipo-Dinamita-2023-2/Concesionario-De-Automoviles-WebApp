@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { obtenerSucursal, crearSucursal, eliminarSucursal, actualizarSucursal } from "../api/sucursal-api"; 
+import { obtenerSucursal, crearSucursal, eliminarSucursal, actualizarSucursal } from "../api/sucursal-api";
 import { mostrar_alerta } from "../componentes/funciones";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
@@ -48,7 +48,7 @@ const GestionSucursal = () => {
             setCelular(celular);
             setFijo(fijo);
             setCorreo(correo);
-            
+
         }
         window.setTimeout(function () {
             document.getElementById('ciudad').focus();
@@ -122,42 +122,40 @@ const GestionSucursal = () => {
     return (
         <>
             <div className="App">
+                <h1>Gestion de sucursal</h1>
                 <div className="container-fluid">
                     <div className="row">
-                        
+
                         {/* Contenido principal */}
-                        <div className="col-md-9">
-                            <div className="row mt-3 align-items-center">
-                                <div className="col-6 text-end">
-                                    <div className="input-group">
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Buscar..."
-                                        />
-                                        <button className="btn btn-primary" type="button">
-                                            Buscar
-                                        </button>
+                        <div className="col-md-20">
+                            <div className="formularios-gestion d-flex flex-row align-items-center" >
+                                <div className="row mt-5 me-1 align-items-center">
+                                    <div className="col-20 text-end">
+                                        <div className="input-group">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Buscar..."
+                                            />
+                                            <button className="btn btn-primary" type="button">
+                                                Buscar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-5">
-                                    <select className="form-select me-2">
-                                        <option value="todos">Todos</option>
-                                        <option value="activo">Activo</option>
-                                        <option value="inactivo">Inactivo</option>
-                                    </select>
-                                    {/* Botón de añadir */}
-                                    <button
-                                        className="btn btn-dark"
-                                        onClick={() => abrirModal(1)}
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalSucursal"
-                                        style={{ maxWidth: '150px' }}
-                                    >
-                                        <i className="fa-solid fa-circle-plus"></i> Añadir
-                                    </button>
+                                <div className="row mt-5">
+                                    <div className="col-40">
+                                        {/* Botón de añadir */}
+                                        <button
+                                            className="btn btn-dark"
+                                            onClick={() => abrirModal(1)}
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalSucursal"
+                                            style={{ maxWidth: '150px' }}
+                                        >
+                                            <i className="fa-solid fa-circle-plus"></i> Añadir
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row mt-3">
@@ -247,8 +245,8 @@ const GestionSucursal = () => {
                                     <input type="number" id="celular" className="form-control" placeholder="Celular" value={celular}
                                         onChange={(e) => setCelular(e.target.value)}></input>
                                 </div>
-                                
-                                
+
+
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="fa-solid fa-phone"></i></span>
                                     <input type="number" id="fijo" className="form-control" placeholder="Fijo" value={fijo}

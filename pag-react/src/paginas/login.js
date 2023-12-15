@@ -1,6 +1,7 @@
 import '../estilos/login.css'
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from "react-google-recaptcha";
 import { obtenerEmpleados } from '../api/empleado-api'
 import { obtenerReparaciones } from '../api/reparacion-api';
 import { useUsername } from '../componentes/username';
@@ -10,6 +11,7 @@ function Login() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const captcha = useRef(null);
     const [isLoginMode, setIsLoginMode] = useState(true); // Estado para rastrear el modo actual
     const [credenciales, setCredenciales] = useState([]);
     const [codigos, setCodigos] = useState([]);
@@ -127,6 +129,15 @@ const handleAction = () => {
                                     required
                                 />
                                 <label>Contraseña</label>
+                            </div>
+                        )}
+                        {isLoginMode && (
+                            <div className="recaptcha">
+                                <ReCAPTCHA
+                                    ref={captcha}
+                                    sitekey="6LeiQS8pAAAAABY4oS7SZCaTo22zrBqbcq-Idk-e"
+                                    onChange={onChange}
+                                />,
                             </div>
                         )}
                         {isLoginMode && (

@@ -1,11 +1,13 @@
 import '../estilos/login.css'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Login() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const captcha = useRef(null);
     const [isLoginMode, setIsLoginMode] = useState(true); // Estado para rastrear el modo actual
 
     const handleToggleMode = () => {
@@ -14,13 +16,21 @@ function Login() {
 
     const handleAction = () => {
         if (isLoginMode) {
-            if (username === 'empleado' && password === 'empleado') {
+            if (username === 'empleado' && password === 'empleado' && captcha.current.getValue()) {
                 navigate('/inicio');
+            } else if (!captcha.current.getValue()) {
+                alert('Porfavor resuelta la captcha');
             } else {
-                alert('Intente de nuevo.');
+                alert('Verifique el usuario y la contraseña');
             }
-        } else if(username == 'cliente'){
+        } else if(username === 'cliente'){
             navigate('/progreso')
+        }
+    };
+
+    const onChange = () => {
+        if (captcha.current.getValue()) {
+            console.log('Captcha validada');
         }
     };
 
@@ -48,6 +58,15 @@ function Login() {
                                     required
                                 />
                                 <label>Contraseña</label>
+                            </div>
+                        )}
+                        {isLoginMode && (
+                            <div className="recaptcha">
+                                <ReCAPTCHA
+                                    ref={captcha}
+                                    sitekey="6LeiQS8pAAAAABY4oS7SZCaTo22zrBqbcq-Idk-e"
+                                    onChange={onChange}
+                                />,
                             </div>
                         )}
                         {isLoginMode && (

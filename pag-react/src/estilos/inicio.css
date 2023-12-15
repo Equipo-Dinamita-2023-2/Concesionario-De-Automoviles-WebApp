@@ -62,24 +62,6 @@ footer {
     padding: 0 10px;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
-    margin-bottom: 10px;
-}
-
-a {
-    color: #fff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 /*Inicio main*/
 
 

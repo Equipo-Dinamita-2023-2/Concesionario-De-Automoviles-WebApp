@@ -22,4 +22,4 @@ rm -rf "$DJANGO_APP_DIR/static"  # Eliminar versiones antiguas
 echo "Creando directorio..."
 mkdir -p "$DJANGO_APP_DIR/static"
 echo "Copiando archivos..."
-mv -r "$REACT_APP_DIR/build"/* "$DJANGO_APP_DIR/static/"
+mv "$REACT_APP_DIR/build"/* "$DJANGO_APP_DIR/static/"

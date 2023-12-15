@@ -127,11 +127,6 @@ const GestionRepuesto = () => {
             <div className="App">
                 <div className="container-fluid">
                     <div className="row">
-                        {/* Barra lateral */}
-                        <div className="col-md-3 bg-light">
-                            <h4>Barra Lateral</h4>
-                            {/* Agrega más contenido según sea necesario */}
-                        </div>
                         {/* Contenido principal */}
                         <div className="col-md-9">
                             <div className="row mt-3 align-items-center">

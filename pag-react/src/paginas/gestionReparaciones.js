@@ -32,6 +32,7 @@ const GestionReparaciones = () => {
     const [descripcionTrabajo, setDescripcionTrabajo] = useState('');
     const [operacion, setOperacion] = useState('');
     const [title, setTitle] = useState('');
+    const [busqueda, setBusqueda] = useState('');
 
     useEffect(() => {
         async function cargarReparaciones() {
@@ -48,6 +49,14 @@ const GestionReparaciones = () => {
         }
         cargarReparaciones();
     }, []);
+
+    const handleBusquedaChange = (event) => {
+        setBusqueda(event.target.value);
+    };
+
+    const reparacionesFiltradas = reparaciones.filter((reparacion) =>
+        `${reparacion.placa} ${reparacion.id_cliente} ${reparacion.cod_cliente} ${reparacion.estado_pago} ${reparacion.estado_reparacion} ${reparacion.id_empleado}`.toLowerCase().includes(busqueda.toLowerCase())
+    );
 
     useEffect(() => {
         async function cargarTipoV() {
@@ -254,6 +263,8 @@ const GestionReparaciones = () => {
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Buscar..."
+                                                value={busqueda}
+                                                onChange={handleBusquedaChange}
                                             />
                                             <button className="btn btn-primary" type="button">
                                                 Buscar
@@ -301,7 +312,7 @@ const GestionReparaciones = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="table-group-divider">
-                                                    {reparaciones && reparaciones.map((reparacion) => (
+                                                    {reparaciones && reparacionesFiltradas.map((reparacion) => (
                                                         <tr>
                                                             <td>{reparacion.placa}</td>
                                                             <td>{reparacion.id_cliente}</td>

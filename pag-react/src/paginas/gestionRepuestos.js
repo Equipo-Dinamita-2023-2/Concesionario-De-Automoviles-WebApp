@@ -18,6 +18,7 @@ const GestionRepuesto = () => {
     const [idTipoV, setIdTipoV] = useState("");
     const [operacion, setOperacion] = useState('');
     const [title, setTitle] = useState('');
+    const [busqueda, setBusqueda] = useState('');
 
     useEffect(() => {
         async function cargarRepuestos() {
@@ -31,6 +32,14 @@ const GestionRepuesto = () => {
         }
         cargarRepuestos();
     }, []);
+
+    const handleBusquedaChange = (event) => {
+        setBusqueda(event.target.value);
+    };
+
+    const repuestosFiltrados = repuestos.filter((repuesto) =>
+        `${repuesto.nombre_repuesto} ${repuesto.precio} ${repuesto.id_tipo_vehiculo}`.toLowerCase().includes(busqueda.toLowerCase())
+    );
 
     useEffect(() => {
         async function cargarTipo() {
@@ -158,6 +167,8 @@ const GestionRepuesto = () => {
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Buscar..."
+                                                value={busqueda}
+                                                onChange={handleBusquedaChange}
                                             />
                                             <button className="btn btn-primary" type="button">
                                                 Buscar
@@ -197,7 +208,7 @@ const GestionRepuesto = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="table-group-divider">
-                                                    {repuestos.map((repuesto) => (
+                                                    {repuestosFiltrados.map((repuesto) => (
                                                         <tr>
                                                             <td>{repuesto.nombre_repuesto}</td>
                                                             <td>{repuesto.stock}</td>

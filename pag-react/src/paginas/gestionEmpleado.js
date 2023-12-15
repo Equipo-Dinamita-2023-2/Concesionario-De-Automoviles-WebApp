@@ -24,6 +24,7 @@ const GestionEmpleado = () => {
     const [idSucursal, setIdSucursal] = useState("");
     const [operacion, setOperacion] = useState('');
     const [title, setTitle] = useState('');
+    const [busqueda, setBusqueda] = useState('');
 
     useEffect(() => {
         async function cargarEmpleados() {
@@ -37,6 +38,14 @@ const GestionEmpleado = () => {
         }
         cargarEmpleados();
     }, []);
+
+    const handleBusquedaChange = (event) => {
+        setBusqueda(event.target.value);
+    };
+
+    const empleadosFiltradas = empleados.filter((empleado) =>
+        `${empleado.documento} ${empleado.nombres} ${empleado.apellidos} ${empleado.id_rol} ${empleado.id_sucursal}`.toLowerCase().includes(busqueda.toLowerCase())
+    );
 
     useEffect(() => {
         async function cargarRol() {
@@ -194,6 +203,8 @@ const GestionEmpleado = () => {
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Buscar..."
+                                                value={busqueda}
+                                                onChange={handleBusquedaChange}
                                             />
                                             <button className="btn btn-primary" type="button">
                                                 Buscar
@@ -237,7 +248,7 @@ const GestionEmpleado = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="table-group-divider">
-                                                    {empleados.map((empleado) => (
+                                                    {empleadosFiltradas.map((empleado) => (
                                                         <tr>
                                                             <td>{empleado.documento}</td>
                                                             <td>{empleado.nombres}</td>

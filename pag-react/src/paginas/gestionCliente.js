@@ -17,6 +17,15 @@ const GestionCliente = () => {
     const [ciudad, setCiudad] = useState("");
     const [operacion, setOperacion] = useState('');
     const [title, setTitle] = useState('');
+    const [busqueda, setBusqueda] = useState('');
+
+    const handleBusquedaChange = (event) => {
+        setBusqueda(event.target.value);
+    };
+
+    const clientesFiltrados = cliente.filter((cliente) =>
+        `${cliente.documento} ${cliente.nombres} ${cliente.apellidos} ${cliente.ciudad}`.toLowerCase().includes(busqueda.toLowerCase())
+    );
 
     useEffect(() => {
         async function cargarCliente() {
@@ -146,6 +155,8 @@ const GestionCliente = () => {
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Buscar..."
+                                                value={busqueda}
+                                                onChange={handleBusquedaChange}
                                             />
                                             <button className="btn btn-primary" type="button">
                                                 Buscar
@@ -186,7 +197,7 @@ const GestionCliente = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="table-group-divider">
-                                                    {cliente.map((cliente) => (
+                                                    {clientesFiltrados.map((cliente) => (
                                                         <tr>
                                                             <td>{cliente.documento}</td>
                                                             <td>{cliente.nombres}</td>

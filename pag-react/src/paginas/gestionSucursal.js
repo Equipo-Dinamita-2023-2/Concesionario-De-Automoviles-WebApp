@@ -15,6 +15,7 @@ const GestionSucursal = () => {
     const [correo, setCorreo] = useState("");
     const [operacion, setOperacion] = useState('');
     const [title, setTitle] = useState('');
+    const [busqueda, setBusqueda] = useState('');
 
     useEffect(() => {
         async function cargarSucursal() {
@@ -28,6 +29,14 @@ const GestionSucursal = () => {
         }
         cargarSucursal();
     }, []);
+
+    const handleBusquedaChange = (event) => {
+        setBusqueda(event.target.value);
+    };
+
+    const sucursalesFiltradas = sucursal.filter((sucursal) =>
+        `${sucursal.ciudad} ${sucursal.id_sucursal} ${sucursal.correo}`.toLowerCase().includes(busqueda.toLowerCase())
+    );
 
     const abrirModal = (op, id, ciudad, direccion, celular, fijo, correo) => {
         setId('');
@@ -136,6 +145,8 @@ const GestionSucursal = () => {
                                                 type="text"
                                                 className="form-control"
                                                 placeholder="Buscar..."
+                                                value={busqueda}
+                                                onChange={handleBusquedaChange}
                                             />
                                             <button className="btn btn-primary" type="button">
                                                 Buscar
@@ -175,7 +186,7 @@ const GestionSucursal = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="table-group-divider">
-                                                    {sucursal.map((sucursal) => (
+                                                    {sucursalesFiltradas.map((sucursal) => (
                                                         <tr>
                                                             <td>{sucursal.id_sucursal}</td>
                                                             <td>{sucursal.ciudad}</td>

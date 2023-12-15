@@ -1,14 +1,9 @@
 
 /*Inicio fondo*/
 .contenedor {
-<<<<<<< HEAD
-    display: flex;
-    height: 520px 
-=======
     margin-top: 150px;
     display: flex;
     height: 520px; 
->>>>>>> CDAW-72-CDA2-78-CDAW84
 }
 
 .parte-izquierda {
@@ -205,13 +200,9 @@ footer {
 
 /*Final main*/
 
-<<<<<<< HEAD
-
-=======
 #cuerpo-inicio{
     margin-top: 60px;
 }
->>>>>>> CDAW-72-CDA2-78-CDAW84
 
 
 

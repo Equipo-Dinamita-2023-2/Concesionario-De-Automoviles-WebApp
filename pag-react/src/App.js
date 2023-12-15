@@ -7,12 +7,10 @@ import './estilos/general.css'
 import PagoEnvio from './paginas/pagos-envios';
 import Devoluciones from './paginas/devoluciones';
 import Preguntas from './paginas/preguntas';
-import Promociones from './paginas/promociones';
 import Terminos from './paginas/terminos';
 import Privacidad from './paginas/privacidad';
 import Error from './paginas/error';
 import Login from './paginas/login';
-import Formulario from './paginas/roles';
 import Cotizar from './paginas/cotizar';
 import Progreso from './paginas/progreso';
 import GestionEmpleado from './paginas/gestionEmpleado';
@@ -35,9 +33,6 @@ function App() {
         <Route path='/pagos-envios' element={<PagoEnvio/>}></Route>
         <Route path='/devoluciones' element={<Devoluciones/>}></Route>
         <Route path='/preguntas' element={<Preguntas/>}></Route>
-        <Route path='/promociones' element={<Promociones/>}></Route>
-        <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
-        <Route path='/roles' element={<Formulario/>}></Route>  
         <Route path='/terminos-condiciones' element={<Terminos/>}></Route>
         <Route path='/privacidad' element={<Privacidad/>}></Route>
         <Route path='/progreso' element={<Progreso/>}></Route>

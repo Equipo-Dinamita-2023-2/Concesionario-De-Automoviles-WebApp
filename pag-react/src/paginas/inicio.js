@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
-import Header from '../componentes/header.js';
-=======
 import Cabecera from '../componentes/cabecera';
->>>>>>> CDAW-72-CDA2-78-CDAW84
 import Footer from '../componentes/footer';
 import empresarios from '../imagenes/empresarios.jpg';
 import taller from '../imagenes/taller.jpg';
@@ -117,11 +113,7 @@ function Contacto(){
 
 function Main(){
     return(
-<<<<<<< HEAD
-    <main>
-=======
     <main id='cuerpo-inicio'>
->>>>>>> CDAW-72-CDA2-78-CDAW84
         <Acerca />
         <Servicios/>
         <Contacto/>
@@ -129,18 +121,6 @@ function Main(){
     );
 }
 
-<<<<<<< HEAD
-export default function Inicio() {
-    return (
-        <>
-            <Header />
-            <ImagenesFondo/>
-            <Main/>
-            <Footer/>
-        </>
-    );
-}
-=======
 function Inicio() {
     return (
         <>
@@ -153,4 +133,3 @@ function Inicio() {
 }
 
 export default Inicio;
->>>>>>> CDAW-72-CDA2-78-CDAW84

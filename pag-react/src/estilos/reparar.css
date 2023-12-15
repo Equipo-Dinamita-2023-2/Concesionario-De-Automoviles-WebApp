@@ -2,14 +2,6 @@
 /*Información del cliente*/
 .subtitulos{
     text-align: left;
-<<<<<<< HEAD
-    padding-left: 30px;
-}
-
-.formulario-reparar{
-    background-color: #fff;
-    max-width: 400px;
-=======
     padding-left: 50px;
 }
 
@@ -17,15 +9,10 @@
     background-color:aliceblue;
     width: 80%;
     height: auto;
->>>>>>> CDAW-72-CDA2-78-CDAW84
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-<<<<<<< HEAD
-}
-
-=======
     margin-bottom: 30px;
     text-align: center;
 }
@@ -133,4 +120,3 @@
     text-align: center;
     font-family: 'Poppins', sans-serif;
 }
->>>>>>> CDAW-72-CDA2-78-CDAW84

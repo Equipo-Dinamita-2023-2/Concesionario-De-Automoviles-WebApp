@@ -1,8 +1,5 @@
 import {Link} from 'react-router-dom'
-<<<<<<< HEAD
-=======
 import "../estilos/cabecera.css"
->>>>>>> CDAW-72-CDA2-78-CDAW84
 
 function Footer() {
     return (
@@ -20,12 +17,6 @@ function Footer() {
                         <li>
                             <Link to="/preguntas">Preguntas frecuentes</Link>
                         </li>
-<<<<<<< HEAD
-                        <li>
-                            <Link to="/promociones">Promociones</Link>
-                        </li>
-=======
->>>>>>> CDAW-72-CDA2-78-CDAW84
                     </ul>
                 </div>
 

@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-import Header from "../componentes/header";
-import Footer from "../componentes/footer";
-
-function Imagen(){
-    return(
-        <div>
-            <h1>Reparar</h1>
-        
-        </div>
-    )
-
-}
-
-
-
-function Cotizar(){
-    return(
-        <>
-            <Header/>
-            <Imagen/>
-            <Footer/>
-        </>
-=======
 import { useEffect,useState } from "react";
 import Cabecera from "../componentes/cabecera";
 import Footer from "../componentes/footer";
@@ -126,7 +102,6 @@ function Cotizar(){
             </form>
             <Footer/>
         </div>
->>>>>>> CDAW-72-CDA2-78-CDAW84
         
     )
 }

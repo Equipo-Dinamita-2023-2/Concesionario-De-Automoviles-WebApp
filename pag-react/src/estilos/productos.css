@@ -12,10 +12,7 @@
     width: 90%;
     height: 400px;
     margin: 5px;
-<<<<<<< HEAD
-=======
     border-radius: 20px;
->>>>>>> CDAW-72-CDA2-78-CDAW84
 }
 
 /*Información de cada producto*/
@@ -35,10 +32,7 @@
 #imagen-producto{
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
-=======
   border-radius: 20px;
->>>>>>> CDAW-72-CDA2-78-CDAW84
 }
 
 
@@ -64,22 +58,12 @@
 }
 
 .add-to-cart-button {
-<<<<<<< HEAD
-  background-color: #0080ff;
-=======
   background-color: red;
->>>>>>> CDAW-72-CDA2-78-CDAW84
   color: #fff;
   padding: 8px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.5s;
-<<<<<<< HEAD
-}
-
-.add-to-cart-button:hover {
-  background-color: #005cbf;
-=======
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
@@ -89,7 +73,6 @@
 .add-to-cart-button:hover,
 #boton-buscar:hover {
   background-color: #ff3333;
->>>>>>> CDAW-72-CDA2-78-CDAW84
 }
 
 /*Imagen*/
@@ -101,12 +84,8 @@
   height: 400px; /* Ajusta la altura según tus necesidades */
   display: flex;
   justify-content: center;
-<<<<<<< HEAD
-  align-items:end;
-=======
   align-items:flex-end;
   margin-top: 150px;
->>>>>>> CDAW-72-CDA2-78-CDAW84
 }
 
 .formulario-busqueda {
@@ -118,24 +97,15 @@
   width: 40%;
 }
 
-<<<<<<< HEAD
-input[type="text"] {
-=======
 #busqueda {
->>>>>>> CDAW-72-CDA2-78-CDAW84
   width: 100%;
   padding: 10px;
   border: none;
   border-radius: 10px;
 }
 
-<<<<<<< HEAD
-button {
-  background-color: #007bff;
-=======
 #boton-buscar {
   background-color: red;
->>>>>>> CDAW-72-CDA2-78-CDAW84
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -145,34 +115,6 @@ button {
 }
 
 /* Opciones */
-<<<<<<< HEAD
-.contenedor-de-opciones {
-  width: 100%;
-  padding-top: 70px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 90px;
-  justify-content: center;
-  align-items: center;
-  height: auto;
-  padding-bottom: 20px;
-
-}
-
-.opciones-carro{ 
-  background-color: #0080ff;
-  transform: rotate(45deg);
-  width: 250px;
-  height: 250px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.opciones-carro h2{
-  transform: rotate(-45deg) translate(-65px,55px);
-}
-
-=======
 .container {
   display: flex;
   justify-content: center;
@@ -273,4 +215,3 @@ button {
 
 
 
->>>>>>> CDAW-72-CDA2-78-CDAW84
